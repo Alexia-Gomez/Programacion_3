@@ -1,8 +1,12 @@
 package aplication;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 public class Ventana extends JFrame{
 
@@ -12,7 +16,7 @@ public class Ventana extends JFrame{
 		this.setVisible(true);
 		this.setSize(500,500);
 		
-		this.setResizable(false);
+		this.setResizable(true);
 		this.setLayout(null);
 		
 		//cuando_cierro_mi_aplicacion
@@ -20,17 +24,38 @@ public class Ventana extends JFrame{
 		//sobre_que_elemento_colocare_el_item
 		this.setLocationRelativeTo(null);
 		
-
+		this.setMinimumSize(new Dimension(400,400));
+		this.setMaximumSize(new Dimension(600,600));
 		
-		JLabel etiqueta1 = new JLabel("Bienvenido");
-		etiqueta1.setSize(100,100);
-		etiqueta1.setLocation(0,0);
-		etiqueta1.setBackground(Color.PINK);
-		etiqueta1.setOpaque(true);
-		
-		this.add(etiqueta1);
-		
+		this.add(this.login());
+		this.repaint();
+	
 	}
 	
+	public JPanel login() {
+		
+		JPanel login = new JPanel();
+		login.setLocation(0,0);
+		login.setSize(500,500);
+		login.setOpaque(true);
+		login.setBackground(new Color(211, 255, 234));
+		login.setVisible(true);
+		login.setLayout(null);
+		
+		JLabel etiqueta1 = new JLabel("¡Bienvenido!");
+		etiqueta1.setSize(160,40);
+		etiqueta1.setLocation(160,10);
+		etiqueta1.setForeground(Color.WHITE);
+		etiqueta1.setBackground(new Color(255, 195, 0));
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Impact", Font.ITALIC, 20));
+		login.add(etiqueta1);
+		
+		
+		login.revalidate();
+		return login;
+		
+	}
 
 }
