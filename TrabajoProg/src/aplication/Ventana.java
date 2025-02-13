@@ -25,7 +25,7 @@ public class Ventana extends JFrame{
 		JLabel etiqueta1 = new JLabel("Bienvenido");
 		etiqueta1.setSize(100,100);
 		etiqueta1.setLocation(0,0);
-		etiqueta1.setBackground(Color.ORANGE);
+		etiqueta1.setBackground(Color.PINK);
 		etiqueta1.setOpaque(true);
 		
 		this.add(etiqueta1);
