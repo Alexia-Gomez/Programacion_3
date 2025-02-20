@@ -14,6 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 public class Ventana extends JFrame{
@@ -35,8 +37,9 @@ public class Ventana extends JFrame{
 		this.setMinimumSize(new Dimension(400,400));
 		this.setMaximumSize(new Dimension(600,600));
 		
-		this.add(this.login());
-		this.add(this.registro());
+		//this.add(this.login());
+		//this.add(this.registro());
+		this.add(this.usuarios());
 		this.repaint();
 	
 	}
@@ -266,4 +269,107 @@ public class Ventana extends JFrame{
 		return registro;
 	}
 
+	public JPanel usuarios() {
+		
+		JPanel usuarios = new JPanel();
+		usuarios.setLocation(0,0);
+		usuarios.setSize(1000,800);
+		usuarios.setOpaque(true);
+		usuarios.setBackground(Color.WHITE);
+		usuarios.setVisible(true);
+		usuarios.setLayout(null);
+		
+		JLabel etiqueta1 = new JLabel("USUARIOS");
+		etiqueta1.setBounds(400, 40, 200, 30);
+		etiqueta1.setForeground(Color.black);
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 30));
+		usuarios.add(etiqueta1);
+		
+		JLabel text1 = new JLabel("Total de usuarios");
+		text1.setBounds(60, 100, 200, 30);
+		text1.setFont(etiquetas);
+		text1.setHorizontalAlignment(JLabel.CENTER);
+		text1.setOpaque(true);
+		text1.setBackground(new Color(154, 201, 255));
+		usuarios.add(text1);
+		
+		JLabel text2 = new JLabel("20");
+		text2.setBounds(60, 130, 200, 30);
+		text2.setFont(etiquetas);
+		text2.setHorizontalAlignment(JLabel.CENTER);
+		text2.setOpaque(true);
+		text2.setBackground(new Color(154, 201, 255));
+		usuarios.add(text2);
+		
+		JLabel totalPop= new JLabel();
+		totalPop.setBounds(60, 90, 200, 80);
+		totalPop.setOpaque(true);
+		totalPop.setBackground(new Color(154, 201, 255));
+		usuarios.add(totalPop);
+		
+		JLabel text3 = new JLabel("Añadir");
+		text3.setBounds(800, 120, 100, 30);
+		text3.setFont(etiquetas);
+		text3.setHorizontalAlignment(JLabel.CENTER);
+		text3.setBackground(new Color(154, 201, 255));
+		text3.setOpaque(true);
+		text3.setBorder(BorderFactory.createLineBorder(new Color(122, 146, 173), 2));
+		usuarios.add(text3);
+		
+		JLabel text4 = new JLabel("Exportar");
+		text4.setBounds(680, 120, 100, 30);
+		text4.setFont(etiquetas);
+		text4.setHorizontalAlignment(JLabel.CENTER);
+		text4.setBackground(new Color(154, 201, 255));
+		text4.setOpaque(true);
+		text4.setBorder(BorderFactory.createLineBorder(new Color(122, 146, 173), 2));
+		usuarios.add(text4);
+		
+		
+		String [] columnNames = {
+				"First Name",
+				"Last Name",
+				"Game",
+				"Age",
+				"Vegetarian"
+				
+		};
+		
+		Object[][] data = {
+				{"Kathy", "Smith", "SnowBoarding", 1995, true},
+				{"John", "DOe", "Rowing", 2002, true},
+				{"Sue", "Black", "Knitting", 2015, false},
+				{"Jane", "White", "Speed reading", 1999, true},
+				{"Joe", "Brown", "Pool", 2019, false},
+				{"Kathy", "Smith", "SnowBoarding", 1995, true},
+				{"John", "DOe", "Rowing", 2002, true},
+				{"Sue", "Black", "Knitting", 2015, false},
+				{"Jane", "White", "Speed reading", 1999, true},
+				{"Joe", "Brown", "Pool", 2019, false},
+				{"Kathy", "Smith", "SnowBoarding", 1995, true},
+				{"John", "DOe", "Rowing", 2002, true},
+				{"Sue", "Black", "Knitting", 2015, false},
+				{"Jane", "White", "Speed reading", 1999, true},
+				{"Joe", "Brown", "Pool", 2019, false},
+				{"Kathy", "Smith", "SnowBoarding", 1995, true},
+				{"John", "DOe", "Rowing", 2002, true},
+				{"Sue", "Black", "Knitting", 2015, false},
+				{"Jane", "White", "Speed reading", 1999, true},
+				{"Joe", "Brown", "Pool", 2019, false}
+		};
+		
+		JTable table = new JTable(data, columnNames);
+		JScrollPane scrollPane = new JScrollPane(table);
+		scrollPane.setSize(930,200);
+		scrollPane.setLocation(30, 200);
+		usuarios.add(scrollPane);
+		
+		usuarios.revalidate();
+		return usuarios;
+		
+	}
 }
