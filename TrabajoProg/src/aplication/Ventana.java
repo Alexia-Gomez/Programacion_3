@@ -9,18 +9,22 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -48,7 +52,37 @@ public class Ventana extends JFrame{
 		this.add(this.login());
 		//this.add(this.registro());
 		//this.add(this.usuarios());
+		
+		
+		JMenuBar barra = new JMenuBar();
+		
+		JMenu menu1 = new JMenu("Archivo");
+		JMenu menu2 = new JMenu("Ayuda");
+		
+		JMenuItem op_abrir = new JMenuItem("Abrir");
+		JMenuItem op_nuevo = new JMenuItem("Nuevo");
+		JMenuItem op_guardar= new JMenuItem("Guardar");
+		JMenuItem op_cerrar = new JMenuItem("Cerrar");
+		
+		menu1.add(op_abrir);
+		menu1.add(op_nuevo);
+		menu1.add(op_guardar);
+		menu1.add(op_cerrar);
+		
+		JRadioButtonMenuItem op_ayuda = new JRadioButtonMenuItem("Manual de usuario");
+		JCheckBoxMenuItem op_soporte = new JCheckBoxMenuItem ("Soporte");
+		
+		menu2.add(op_ayuda);
+		menu2.add(op_soporte);
+		
+		
+		barra.add(menu1);
+		barra.add(menu2);
+		
+		this.setJMenuBar(barra);
+		
 		this.repaint();
+		this.revalidate();
 	
 	}
 	
