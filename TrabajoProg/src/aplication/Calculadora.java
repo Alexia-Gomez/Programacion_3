@@ -32,7 +32,7 @@ public class Calculadora extends JFrame{
 		this.repaint();
 	}
 	
-	Font btn = new Font("Nunito", Font.BOLD, 30);
+	Font btn = new Font("Nunito", Font.BOLD, 35);
 	
 	public JPanel resultado() {
 		JPanel resultado = new JPanel();
@@ -48,7 +48,7 @@ public class Calculadora extends JFrame{
 		texto.setHorizontalAlignment(JLabel.RIGHT);
 		texto.setBackground(Color.WHITE);
 		texto.setOpaque(true);
-		texto.setFont( new Font("Nunito", Font.BOLD, 40));
+		texto.setFont( new Font("Nunito", Font.BOLD, 45));
 		resultado.add(texto);
 		
 		resultado.revalidate();

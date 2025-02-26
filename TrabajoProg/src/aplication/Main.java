@@ -4,9 +4,9 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Ventana ventana = new Ventana("Iniciar Sesión");
+		//Ventana ventana = new Ventana("Iniciar Sesión");
 		
-		//Calculadora calculadora = new Calculadora("Calculadoa");
+		Calculadora calculadora = new Calculadora("Calculadoa");
 	}
 
 }

@@ -49,7 +49,7 @@ public class Ventana extends JFrame{
 		this.setMinimumSize(new Dimension(400,400));
 		this.setMaximumSize(new Dimension(600,600));
 		
-		this.add(this.login());
+		//this.add(this.login());
 		//this.add(this.registro());
 		//this.add(this.usuarios());
 		
@@ -88,7 +88,7 @@ public class Ventana extends JFrame{
 	
 	Font etiquetas2 = new Font("Nunito", Font.BOLD, 15); 
 	Font etiquetas3 = new Font("Nunito", Font.PLAIN, 14); 
-	
+	/*
 	public JPanel login() {
 		
 		JPanel login = new JPanel();
@@ -256,7 +256,7 @@ public class Ventana extends JFrame{
 		return login;
 		
 	}
-/*	
+	
 	public JPanel registro() {
 		JPanel registro = new JPanel();
 		registro.setLocation(500,0);
