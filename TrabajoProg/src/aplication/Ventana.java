@@ -1,10 +1,12 @@
 package aplication;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.MouseAdapter;
@@ -29,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 public class Ventana extends JFrame{
 
@@ -36,10 +39,10 @@ public class Ventana extends JFrame{
 		
 		this.setTitle(title);
 		this.setVisible(true);
-		this.setSize(1000,800);
+		this.setSize(1000,600);
 		
 		this.setResizable(true);
-		this.setLayout(null);
+		this.setLayout(new BorderLayout());
 		
 		//cuando_cierro_mi_aplicacion
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,12 +50,9 @@ public class Ventana extends JFrame{
 		this.setLocationRelativeTo(null);
 		
 		this.setMinimumSize(new Dimension(400,400));
-		this.setMaximumSize(new Dimension(600,600));
+		this.setMaximumSize(new Dimension(800,800));
 		
-		//this.add(this.login());
-		//this.add(this.registro());
-		//this.add(this.usuarios());
-		
+		this.setResizable(true);
 		
 		JMenuBar barra = new JMenuBar();
 		
@@ -79,7 +79,14 @@ public class Ventana extends JFrame{
 		barra.add(menu1);
 		barra.add(menu2);
 		
+		
+		//this.add(this.login());
+		//this.add(this.registro());
+		//this.add(this.usuarios());
+		this.add((this.layoutP()));
+
 		this.setJMenuBar(barra);
+		
 		
 		this.repaint();
 		this.revalidate();
@@ -87,7 +94,99 @@ public class Ventana extends JFrame{
 	}
 	
 	Font etiquetas2 = new Font("Nunito", Font.BOLD, 15); 
-	Font etiquetas3 = new Font("Nunito", Font.PLAIN, 14); 
+	Font etiquetas3 = new Font("Nunito", Font.PLAIN, 16);
+	Font etiquetas4 = new Font("Nunito", Font.BOLD, 25);
+	Font botones = new Font("Nunito", Font.BOLD, 16);
+	
+	public JPanel layoutP() {
+		JPanel layoutP = new JPanel();
+		layoutP.setBounds(0, 0,  500, 500);
+		layoutP.setOpaque(true);
+		layoutP.setVisible(true);
+		layoutP.setLayout(new BorderLayout());
+		
+		JLabel titulo = new JLabel("Interés");
+		titulo.setSize(200, 40);
+		titulo.setLocation(160,  10);
+		titulo.setFont(etiquetas4);
+		titulo.setOpaque(true);
+		layoutP.add(titulo, BorderLayout.NORTH);
+		
+		TitledBorder title = BorderFactory.createTitledBorder("Calcular interés");
+		title.setTitleFont(etiquetas2);
+		
+		JPanel calc = new JPanel();
+		calc.setOpaque(true);
+		calc.setBackground(new Color(165, 207, 255));
+		calc.setVisible(true);
+		calc.setBorder(title);
+		calc.setLayout(new GridLayout(4,2, 50, 60));
+		
+		JLabel cp = new JLabel("Capital:");
+		cp.setFont(etiquetas3);
+		JTextField cp_txt = new JTextField();
+		
+		JLabel tm = new JLabel("Tiempo:");
+		tm.setFont(etiquetas3);
+		JTextField tm_txt = new JTextField();
+		
+		JLabel ti = new JLabel("Tasa interés:");
+		ti.setFont(etiquetas3);
+		JTextField ti_txt = new JTextField();
+		
+		JButton calcular = new JButton("Calcular");
+		calcular.setBackground(new Color(209, 209, 209));
+		calcular.setFont(botones);
+		JButton cancelar = new JButton("Cancelar");
+		cancelar.setBackground(new Color(209, 209, 209));
+		cancelar.setFont(botones);
+		
+		calc.add(cp);
+		calc.add(cp_txt);
+		calc.add(tm);
+		calc.add(tm_txt);
+		calc.add(ti);
+		calc.add(ti_txt);
+		
+		calc.add(calcular);
+		calc.add(cancelar);
+		
+		
+		
+		layoutP.add(calc, BorderLayout.CENTER);
+		
+		
+		
+		
+		
+		JPanel footer = new JPanel();
+		footer.setOpaque(true);
+		footer.setBackground(new Color(206, 229, 255 ));
+		footer.setVisible(true);
+		footer.setLayout(new GridLayout(2, 2, 40, 45));
+		
+		JLabel inte = new JLabel("Interés:");
+		inte.setFont(etiquetas3);
+		
+		JTextField inte_txt = new JTextField();
+		
+		JLabel cant = new JLabel("Monto:");
+		cant.setFont(etiquetas3);
+		
+		JTextField cant_txt = new JTextField();
+		
+		footer.add(inte);
+		footer.add(inte_txt);
+		footer.add(cant);
+		footer.add(cant_txt);
+		
+		layoutP.add(footer, BorderLayout.PAGE_END);
+		
+		return layoutP;
+		
+	} 
+	
+	
 	/*
 	public JPanel login() {
 		
