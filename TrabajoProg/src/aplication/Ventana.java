@@ -37,6 +37,7 @@ public class Ventana extends JFrame{
 
 	public Ventana(String title) {
 		
+		this.setIconImage(new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\cinnamonroll2.jpg").getImage());
 		this.setTitle(title);
 		this.setVisible(true);
 		this.setSize(1000,600);
