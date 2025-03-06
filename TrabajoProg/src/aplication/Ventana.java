@@ -44,7 +44,7 @@ public class Ventana extends JFrame{
 		this.setIconImage(new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\cinnamonroll2.jpg").getImage());
 		this.setTitle(title);
 		this.setVisible(true);
-		this.setSize(1000,600);
+		this.setSize(1000,650);
 		this.setBackground(Color.BLACK);
 		
 		this.setResizable(true);
@@ -606,7 +606,7 @@ public class Ventana extends JFrame{
 	}
 	*/
 	
-	@Override
+	/*@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		
@@ -649,9 +649,158 @@ public class Ventana extends JFrame{
 		g2.fillPolygon(xs2, ys2, 3);
 		
 		
+	}*/
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		Color blanco = new Color(246, 243, 237);
+		
+		//FONDO
+			//CIELO
+		g2.setColor(new Color(120, 196, 199));
+		g2.fillRect(0, 0, 1000, 800);
+		g2.setColor(new Color(255, 202, 6));
+		g2.fillOval(850, 60, 70, 70);
+		
+			//PASTO
+		g2.setColor(new Color(35, 117, 30));
+		g2.fillRect(0, 450, 1000, 300);
+		
+			//CERCO
+		g2.setColor(new Color(232, 232, 232));
+		g2.fillRect(0, 425, 1000, 15);
+		g2.fillRect(0, 450, 1000, 15);
+		
+		g2.setColor(blanco);
+		int [] xsc = {0, 0, 20 , 40, 40 };
+		int [] ysc = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc, ysc, 5);
+		
+		int [] xsc2 = {50, 50, 70 , 90, 90 };
+		int [] ysc2 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc2, ysc2, 5);
+		
+		int [] xsc3 = {100, 100, 120 , 140, 140 };
+		int [] ysc3 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc3, ysc3, 5);
+		
+		int [] xsc4 = {150, 150, 170 , 190, 190 };
+		int [] ysc4 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc4, ysc4, 5);
+		
+		int [] xsc5 = {710, 710, 730 , 750, 750 };
+		int [] ysc5 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc5, ysc5, 5);
+		
+		int [] xsc6 = {760, 760, 780 , 800, 800 };
+		int [] ysc6 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc6, ysc6, 5);
+		
+		int [] xsc7 = {810, 810, 830 , 850, 850 };
+		int [] ysc7 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc7, ysc7, 5);
+		
+		int [] xsc8 = {860, 860, 880 , 900, 900 };
+		int [] ysc8 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc8, ysc8, 5);
+		
+		int [] xsc9 = {910, 910, 930 , 950, 950 };
+		int [] ysc9 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc9, ysc9, 5);
+		
+		int [] xsc10 = {960, 960, 980 , 1000, 1000 };
+		int [] ysc10 = {480,420 , 400 , 420, 480  };
+		g2.fillPolygon(xsc10, ysc10, 5);
+		
+		//BASE CASA
+		g2.setColor(new Color(243, 213, 136));
+		g2.fillRect(200, 200, 500, 300);
+		
+		
+		g2.setStroke(new BasicStroke(4));
+		g2.setColor(new Color(229, 199, 107));
+		g2.drawLine(202, 330, 699, 330);
+		g2.drawLine(202, 350, 699, 350);
+		g2.drawLine(202, 370, 699, 370);
+		g2.drawLine(202, 390, 699, 390);
+		g2.drawLine(202, 410, 699, 410);
+		g2.drawLine(202, 430, 699, 430);
+		g2.drawLine(202, 450, 699, 450);
+		g2.drawLine(202, 470, 699, 470);
+		g2.drawLine(202, 490, 699, 490);
+		
+		
+		//CHIMENEA
+		g2.setColor(new Color(21, 31, 39)); //azul3
+		g2.fillRect(230, 100, 60, 50);
+		g2.setColor(blanco);
+		g2.fillRect(225, 100, 70, 10);
+		
+		
+		
+		//TECHOS
+			//BACK
+		g2.setColor(new Color(29, 43, 54)); //azul2
+		int [] xs = {150, 200 , 700, 750 };
+		int [] ys = {300, 150 , 150, 300 };
+		g2.fillPolygon(xs, ys, 4);
+		
+		g2.setColor(blanco);
+		g2.setStroke(new BasicStroke(10));
+		g2.drawLine(155, 302, 745, 302);
+		
+			//FRONT
+		g2.setColor(new Color(38, 53, 64)); //azul1
+		int [] xs2 = {300, 450 , 600 };
+		int [] ys2 = {330, 220 , 330 };
+		g2.fillPolygon(xs2, ys2, 3);
+				
+		g2.setColor(blanco);
+		g2.setStroke(new BasicStroke(10));
+		g2.drawLine(306, 330, 594, 330);
+		
+		
+		//DETALLES
+		
+			//PUERTA
+		g2.setColor(new Color( 47, 20, 29)); //cafe
+		g2.fillRect(405, 370, 90, 130);
+		g2.setColor(new Color( 39, 15, 24));
+		g2.setStroke(new BasicStroke(5));
+		g2.drawRect(425, 385, 50, 60);
+		g2.drawRect(425, 455, 50, 30);
+		g2.fillOval(480, 445, 10, 10);
+		
+		
+			//PILARES
+		g2.setColor(blanco);
+		
+		g2.setStroke(new BasicStroke(25));
+		g2.drawLine(350 ,348 ,350 ,488);
+		
+		g2.setStroke(new BasicStroke(25));
+		g2.drawLine(550 ,348 ,550 ,488);
+		
+			//VENTANAS
+		g2.setColor(new Color(120, 196, 199)); //azulClaro
+		
+		g2.fillRect(580, 370, 100, 70);
+		g2.fillRect(220, 370, 100, 70);
+		
+		g2.setColor(blanco);
+		g2.setStroke(new BasicStroke(5));
+		g2.drawRect(580, 370, 100, 70);
+		g2.drawRect(220, 370, 100, 70);
+		
+		g2.drawLine(270, 370, 270, 440);
+		g2.drawLine(220, 405, 320, 405);
+		
+		g2.drawLine(630, 370, 630, 440);
+		g2.drawLine(580, 405, 680 , 405);
+		
 	}
-	
-	
-	
 	
 }
