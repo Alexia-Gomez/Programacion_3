@@ -651,7 +651,7 @@ public class Ventana extends JFrame{
 		
 	}*/
 	
-	@Override
+	/*@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		
@@ -801,6 +801,6 @@ public class Ventana extends JFrame{
 		g2.drawLine(630, 370, 630, 440);
 		g2.drawLine(580, 405, 680 , 405);
 		
-	}
+	}*/
 	
 }
