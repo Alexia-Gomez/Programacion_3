@@ -20,7 +20,7 @@ public class graphics extends JFrame {
 		this.setIconImage(new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\mario-icon.png").getImage());
 		this.setTitle(title);
 		this.setVisible(true);
-		this.setSize(850,600);
+		this.setSize(800,600);
 		this.setBackground(Color.BLACK);
 		
 		this.setResizable(true);
@@ -40,7 +40,7 @@ public class graphics extends JFrame {
 		this.revalidate();
 	}
 	
-	@Override
+	/*@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		
@@ -282,8 +282,232 @@ public class graphics extends JFrame {
 		}
 		
 		
-	}
+	}*/
 	
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		
+		Graphics2D g2 = (Graphics2D) g;
+		
+		//FONDO
+		g2.setColor(new Color(6, 101, 192));
+		g2.fillRect(0, 0, 800, 600);
+		
+		
+		//Montañas back
+			//1
+		g2.setColor(new Color(198, 227, 231));//montañas back
+		g2.fillArc(30, 200, 130, 150, 0, 180);
+		g2.fillRect(30, 275, 130, 225);
+		
+		g2.setColor(new Color(236, 243, 254));
+		g2.fillOval(50, 355, 15, 25);
+		g2.fillOval(100, 250, 15, 25);
+		g2.fillOval(100, 320, 15, 25);
+		
+			//2
+		g2.setColor(new Color(198, 227, 231));
+		g2.fillArc(350, 200, 130, 150, 0, 180);
+		g2.fillRect(350, 275, 130, 225);
+		
+		g2.setColor(new Color(236, 243, 254));
+		g2.fillOval(380, 355, 15, 25);
+		g2.fillOval(380, 290, 15, 25);
+		g2.fillOval(420, 250, 15, 25);
+		
+			//3
+		g2.setColor(new Color(198, 227, 231));
+		g2.fillArc(480, 100, 130, 150, 0, 180);
+		g2.fillRect(480, 175, 130, 325);
+		
+		g2.setColor(new Color(236, 243, 254));
+		g2.fillOval(510, 250, 15, 25);
+		g2.fillOval(550, 150, 15, 25);
+		
+		
+		//nubes
+		g2.setColor(new Color(236, 243, 254));
+		g2.fillArc(60, 278, 50, 40, 270, 180);
+		g2.fillRect(0, 278, 85, 40);
+		
+		g2.fillArc(335, 315, 50, 40, 270, 180);
+		g2.fillRect(185, 315, 175, 40);
+		g2.fillArc(160, 315, 50, 40, 90, 180);
+		
+		g2.fillArc(240, 395, 50, 40, 90, 180);
+		g2.fillRect(265, 395, 85, 40);
+		
+		g2.fillArc(300, 435, 50, 40, 270, 180);
+		g2.fillRect(160, 435, 165, 40);
+		
+		g2.fillArc(240, 475, 50, 40, 90, 180);
+		g2.fillRect(265, 475, 85, 40);
+		
+		g2.fillArc(650, 255, 50, 40, 270, 180);
+		g2.fillRect(610, 255, 65, 40);
+		
+		g2.fillArc(610, 215, 50, 40, 90, 180);
+		g2.fillRect(635, 215, 80, 40);
+		g2.fillArc(690, 215, 50, 40, 270, 180);
+		
+		//Montañas front
+		
+			//1
+		g2.setColor(new Color(23, 78, 103));//borde
+		g2.fillArc(-60, 388, 175, 150, 0, 180);
+		g2.fillRect(-60, 460, 175, 40);
+		
+		g2.setColor(new Color(118, 178, 215));
+		g2.fillArc(-65, 390, 175, 150, 0, 180);
+		g2.fillRect(-65, 460, 175, 40);
+		
+			//2
+		g2.setColor(new Color(23, 78, 103));//borde		
+		g2.fillArc(348, 388, 179, 150, 0, 180);
+		g2.fillRect(348, 460, 175, 40);
+		
+		g2.setColor(new Color(118, 178, 215));
+		g2.fillArc(350, 390, 175, 150, 0, 180);
+		g2.fillRect(350, 460, 175, 40);
+		
+			//3
+		g2.setColor(new Color(23, 78, 103));//borde	
+		g2.fillArc(523, 298, 179, 150, 0, 180);
+		g2.fillRect(523, 373, 179, 127);
+		
+		g2.setColor(new Color(118, 178, 215));
+		g2.fillArc(525, 300, 175, 150, 0, 180);
+		g2.fillRect(525, 375, 175, 125);
+		
+		g2.setColor(new Color(198, 227, 231));
+		g2.fillOval(570, 345, 15, 25);
+		g2.fillOval(640, 425, 15, 25);
+		 	//nube
+		g2.setColor(new Color(236, 243, 254));
+		g2.fillArc(620, 475, 50, 40, 90, 180);
+		g2.fillRect(645, 475, 150, 40);
+		
+		
+		//maceta	
+			//negro
+		g2.setColor(Color.black);
+		g2.fillRect(410, 389, 85, 45);
+		g2.fillRect(415, 400, 75, 100);
+		
+			//morado
+		g2.setColor(new Color(78, 72, 151));
+		g2.fillRect(413, 391, 78, 39);
+		g2.fillRect(417, 435, 67, 65);
+		
+			//claro
+		g2.setColor(new Color(134, 131, 210));
+	
+		g2.fillRect(425, 391, 5, 39);	
+		g2.fillRect(430, 435, 4, 65);
+		
+		g2.setColor(Color.white);
+		g2.fillRect(430, 391, 10, 39);
+		g2.fillRect(434, 435, 10, 65);
+		
+		
+		//PISO
+		g2.setColor(new Color(18, 207, 24));
+		g2.fillRect(0, 501, 800, 20);
+		
+		g2.setColor(new Color( 204, 158, 95));
+		g2.fillRect(0, 521, 800, 80);
+		
+		g2.setStroke(new BasicStroke(2));
+		g2.setColor(Color.black);
+		g2.drawLine(0, 500, 800, 500);
+		
+		g2.setColor(new Color(145, 115, 46));
+		g2.drawLine(0, 521, 800, 521);
+		
+		
+		//maceta2
+			//negro
+		g2.setColor(Color.black);
+		g2.fillRect(725, 430, 65, 35);
+		g2.fillRect(730, 445, 75, 55);
+			//morado
+		g2.setColor(new Color(78, 72, 151));
+		g2.fillRect(728, 432, 65, 28);
+		g2.fillRect(733, 465, 67, 35);
+		
+			//claro
+		g2.setColor(new Color(134, 131, 210));
+			
+		g2.fillRect(740, 432, 5, 28);	
+		g2.fillRect(745, 465, 5, 35);
+				
+		g2.setColor(Color.white);
+		g2.fillRect(745, 432, 10, 28);
+		g2.fillRect(750, 465, 10, 35);
+		
+		
+		//piedras
+		g2.setColor(Color.black);
+		g2.fillRoundRect(680, 465, 40, 35, 15, 5);
+		g2.fillRoundRect(680, 430, 40, 35, 15, 5);
+		g2.fillRoundRect(680, 395, 40, 35, 15, 5);
+		g2.fillRoundRect(680, 360, 40, 35, 15, 5);
+		
+		g2.fillRoundRect(720, 360, 40, 35, 15, 5);
+		g2.fillRoundRect(760, 360, 40, 35, 15, 5);
+		
+		//dentro
+		g2.setColor(Color.gray);
+		g2.fillRoundRect(683, 467, 35, 31, 15, 5);
+		g2.fillRoundRect(683, 432, 35, 31, 15, 5);
+		g2.fillRoundRect(683, 397, 35, 31, 15, 5);
+		g2.fillRoundRect(683, 362, 35, 31, 15, 5);
+		
+		g2.setColor(Color.yellow);
+		g2.fillRoundRect(723, 362, 35, 31, 15, 5);
+		g2.fillRoundRect(763, 362, 35, 31, 15, 5);
+		
+		g2.setColor(Color.black);
+		g2.fillOval(733, 370, 5, 10);
+		g2.fillOval(744, 370, 5, 10);
+		
+		
+		//imagenes
+		BufferedImage mario2, planta2, arbusto2;
+		try {
+			mario2 = ImageIO.read(new File("C:\\Users\\alexi\\OneDrive\\Imágenes\\figura-mario2.png"));
+			planta2 = ImageIO.read(new File("C:\\Users\\alexi\\OneDrive\\Imágenes\\planta2.png"));
+			arbusto2 = ImageIO.read(new File("C:\\Users\\alexi\\OneDrive\\Imágenes\\arbusto2.png"));
+			
+			g2.drawImage(planta2,
+					425,
+					310,
+					50,
+					50, 
+					null);
+			
+			g2.drawImage(mario2,
+					345,
+					430,
+					70,
+					80, 
+					null);
+
+			g2.drawImage(arbusto2,
+					145,
+					455,
+					130,
+					60, 
+					null);
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 	
