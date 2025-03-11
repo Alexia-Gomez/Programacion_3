@@ -11,6 +11,8 @@ import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -87,7 +89,8 @@ public class Ventana extends JFrame{
 		
 		
 		//this.add(this.login());
-		//this.add(this.registro());
+		this.add(this.registro());
+		
 		//this.add(this.usuarios());
 		//this.add((this.layoutP()));
 
@@ -191,7 +194,7 @@ public class Ventana extends JFrame{
 		return layoutP;
 		
 	} 
-	/*
+	
 	public JPanel login() {
 		
 		JPanel login = new JPanel();
@@ -245,6 +248,7 @@ public class Ventana extends JFrame{
 		contraseña_icon.setIcon(new ImageIcon(contraseña.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
 		login.add(contraseña_icon);
 		
+		
 		//CONTRASEÑA
 		JLabel etiqueta3 = new JLabel("Contraseña:");
 		etiqueta3.setBounds(190, 260, 160, 30);
@@ -260,7 +264,6 @@ public class Ventana extends JFrame{
 		pass.setOpaque(true);
 		pass.setFont(etiquetas3);
 		login.add(pass);
-		
 		
 		
 		//RECORDAR CONTRASEÑA
@@ -334,8 +337,43 @@ public class Ventana extends JFrame{
 			}
 		});
 		
+		btn_a.addActionListener(new ActionListener() {
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(user.getText().equals("")) {
+					user.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				}else {
+					user.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+				if(pass.getText().equals("")) {
+					pass.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				}else {
+					pass.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+			}
+		});
 		
-		
+		btn_b.addActionListener(new ActionListener() {
+
+			@SuppressWarnings("deprecation")
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(user.getText().equals("")) {
+					user.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				}else {
+					user.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+				if(pass.getText().equals("")) {
+					pass.setBorder(BorderFactory.createLineBorder(Color.red,5));
+				}else {
+					pass.setBorder(BorderFactory.createLineBorder(Color.green,5));
+				}
+			}
+		});;
 		
 		
 		//FONDO1
@@ -351,7 +389,6 @@ public class Ventana extends JFrame{
 		JLabel fondo_img = new JLabel();
 		fondo_img.setBounds(0, 0, 700, 600);
 		fondo_img.setIcon(fondo);
-		//fondo_img.setIcon(new ImageIcon(fondo.getImage().getScaledInstance(700, 300, Image.SCALE_SMOOTH)));
 		login.add(fondo_img);
 		
 	
@@ -359,7 +396,7 @@ public class Ventana extends JFrame{
 		return login;
 		
 	}
-	
+		
 	public JPanel registro() {
 		JPanel registro = new JPanel();
 		registro.setLocation(500,0);
@@ -370,7 +407,7 @@ public class Ventana extends JFrame{
 		registro.setLayout(null);
 		
 		JLabel etiqueta1 = new JLabel("Registro");
-		etiqueta1.setBounds(175, 60, 170, 40);
+		etiqueta1.setBounds(175, 70, 170, 40);
 		etiqueta1.setForeground(new Color(10, 73, 143));
 		etiqueta1.setBackground(Color.WHITE);
 		etiqueta1.setOpaque(true);
@@ -382,21 +419,21 @@ public class Ventana extends JFrame{
 		etiqueta2.setBounds(90, 120, 160, 30);
 		etiqueta2.setBackground(Color.WHITE);
 		etiqueta2.setOpaque(true);
-		etiqueta2.setFont(etiquetas);
+		etiqueta2.setFont(etiquetas2);
 		registro.add(etiqueta2);
 		
 		JTextField user = new JTextField();
 		user.setBounds(90, 155, 345, 30);
 		user.setBackground(new Color(237, 237, 237 ));
 		user.setOpaque(true);
-		user.setFont(etiquetas);
+		user.setFont(etiquetas2);
 		registro.add(user);
 		
 		JLabel etiqueta3 = new JLabel("BIO:");
 		etiqueta3.setBounds(90, 200, 160, 30);
 		etiqueta3.setBackground(Color.WHITE);
 		etiqueta3.setOpaque(true);
-		etiqueta3.setFont(etiquetas);
+		etiqueta3.setFont(etiquetas2);
 		registro.add(etiqueta3);
 		
 		JTextField bio_txt = new JTextField();
@@ -404,14 +441,14 @@ public class Ventana extends JFrame{
 		bio_txt.setBackground(Color.WHITE);
 		bio_txt.setBackground(new Color(237, 237, 237 ));
 		bio_txt.setOpaque(true);
-		bio_txt.setFont(etiquetas);
+		bio_txt.setFont(etiquetas2);
 		registro.add(bio_txt);
 		
 		JLabel etiqueta4 = new JLabel("Preferencias:");
 		etiqueta4.setBounds(90, 310, 160, 30);
 		etiqueta4.setBackground(Color.WHITE);
 		etiqueta4.setOpaque(true);
-		etiqueta4.setFont(etiquetas);
+		etiqueta4.setFont(etiquetas2);
 		registro.add(etiqueta4);
 		
 		JCheckBox box1 = new JCheckBox();
@@ -457,7 +494,7 @@ public class Ventana extends JFrame{
 		etiqueta5.setBounds(90, 380, 160, 30);
 		etiqueta5.setBackground(Color.WHITE);
 		etiqueta5.setOpaque(true);
-		etiqueta5.setFont(etiquetas);
+		etiqueta5.setFont(etiquetas2);
 		registro.add(etiqueta5);
 		
 		ButtonGroup terminos = new ButtonGroup();
@@ -496,11 +533,23 @@ public class Ventana extends JFrame{
 		btn.setFont(new Font("Nunito", Font.BOLD, 18));
 		registro.add(btn);
 		
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(50, 50, 430, 535);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		registro.add(fondo1);
+		
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 550, 600);
+		fondo_img.setIcon(fondo);
+		registro.add(fondo_img);
+		
 		
 		registro.revalidate();
 		return registro;
 	}
-
+	
 	public JPanel usuarios() {
 		
 		JPanel usuarios = new JPanel();
@@ -523,7 +572,7 @@ public class Ventana extends JFrame{
 		
 		JLabel text1 = new JLabel("Total de usuarios");
 		text1.setBounds(60, 100, 200, 30);
-		text1.setFont(etiquetas);
+		text1.setFont(etiquetas2);
 		text1.setHorizontalAlignment(JLabel.CENTER);
 		text1.setOpaque(true);
 		text1.setBackground(new Color(154, 201, 255));
@@ -531,7 +580,7 @@ public class Ventana extends JFrame{
 		
 		JLabel text2 = new JLabel("20");
 		text2.setBounds(60, 130, 200, 30);
-		text2.setFont(etiquetas);
+		text2.setFont(etiquetas2);
 		text2.setHorizontalAlignment(JLabel.CENTER);
 		text2.setOpaque(true);
 		text2.setBackground(new Color(154, 201, 255));
@@ -545,7 +594,7 @@ public class Ventana extends JFrame{
 		
 		JLabel text3 = new JLabel("Añadir");
 		text3.setBounds(800, 120, 100, 30);
-		text3.setFont(etiquetas);
+		text3.setFont(etiquetas2);
 		text3.setHorizontalAlignment(JLabel.CENTER);
 		text3.setBackground(new Color(154, 201, 255));
 		text3.setOpaque(true);
@@ -554,7 +603,7 @@ public class Ventana extends JFrame{
 		
 		JLabel text4 = new JLabel("Exportar");
 		text4.setBounds(680, 120, 100, 30);
-		text4.setFont(etiquetas);
+		text4.setFont(etiquetas2);
 		text4.setHorizontalAlignment(JLabel.CENTER);
 		text4.setBackground(new Color(154, 201, 255));
 		text4.setOpaque(true);
@@ -604,7 +653,6 @@ public class Ventana extends JFrame{
 		return usuarios;
 		
 	}
-	*/
 	
 	/*@Override
 	public void paint(Graphics g) {
@@ -649,9 +697,9 @@ public class Ventana extends JFrame{
 		g2.fillPolygon(xs2, ys2, 3);
 		
 		
-	}*/
+	}
 	
-	/*@Override
+	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		
