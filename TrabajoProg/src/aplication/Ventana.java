@@ -66,11 +66,15 @@ public class Ventana extends JFrame{
 		
 		JMenu menu1 = new JMenu("Archivo");
 		JMenu menu2 = new JMenu("Ayuda");
+		JMenu menu3 = new JMenu("Cuenta");
 		
 		JMenuItem op_abrir = new JMenuItem("Abrir");
 		JMenuItem op_nuevo = new JMenuItem("Nuevo");
 		JMenuItem op_guardar= new JMenuItem("Guardar");
 		JMenuItem op_cerrar = new JMenuItem("Cerrar");
+		
+		JMenuItem op_login= new JMenuItem("Inicio de sesión");
+		JMenuItem op_registro = new JMenuItem("Registro");
 		
 		menu1.add(op_abrir);
 		menu1.add(op_nuevo);
@@ -83,10 +87,33 @@ public class Ventana extends JFrame{
 		menu2.add(op_ayuda);
 		menu2.add(op_soporte);
 		
+		menu3.add(op_login);
+		menu3.add(op_registro);
+		
 		
 		barra.add(menu1);
 		barra.add(menu2);
+		barra.add(menu3);
 		
+		op_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
+		op_registro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("registro");
+			}
+			
+		});
 		
 		this.add(this.login());
 		//this.add(this.registro());
