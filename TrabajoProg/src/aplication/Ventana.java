@@ -88,8 +88,8 @@ public class Ventana extends JFrame{
 		barra.add(menu2);
 		
 		
-		//this.add(this.login());
-		this.add(this.registro());
+		this.add(this.login());
+		//this.add(this.registro());
 		
 		//this.add(this.usuarios());
 		//this.add((this.layoutP()));
@@ -358,23 +358,13 @@ public class Ventana extends JFrame{
 		
 		btn_b.addActionListener(new ActionListener() {
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(user.getText().equals("")) {
-					user.setBorder(BorderFactory.createLineBorder(Color.red,5));
-				}else {
-					user.setBorder(BorderFactory.createLineBorder(Color.green,5));
-				}
-				if(pass.getText().equals("")) {
-					pass.setBorder(BorderFactory.createLineBorder(Color.red,5));
-				}else {
-					pass.setBorder(BorderFactory.createLineBorder(Color.green,5));
-				}
+				manager("registro");
 			}
-		});;
-		
+			
+		});		
 		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
@@ -396,7 +386,22 @@ public class Ventana extends JFrame{
 		return login;
 		
 	}
+
+	public void manager(String target) {
+
+		this.getContentPane().removeAll();
 		
+		if(target.equals("registro")) {
+			this.add(this.registro());
+		}
+		if(target.equals("login")) {
+			this.add(this.login());
+		}
+		
+		this.repaint();
+		this.revalidate();
+	}
+	
 	public JPanel registro() {
 		JPanel registro = new JPanel();
 		registro.setLocation(500,0);
@@ -526,12 +531,30 @@ public class Ventana extends JFrame{
 		registro.add(colonias);
 		
 		JButton btn = new JButton("Crear cuenta");
-		btn.setBounds(190, 530, 150, 40);
+		btn.setBounds(90, 530, 150, 40);
 		btn.setBackground(new Color(10, 73, 143) );
 		btn.setForeground(Color.white);
 		btn.setOpaque(true);
 		btn.setFont(new Font("Nunito", Font.BOLD, 18));
 		registro.add(btn);
+		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(250, 530, 180, 40);
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		registro.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
 		
 		JLabel fondo1 = new JLabel();
 		fondo1.setBounds(50, 50, 430, 535);
