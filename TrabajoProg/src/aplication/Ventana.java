@@ -64,32 +64,36 @@ public class Ventana extends JFrame{
 		
 		JMenuBar barra = new JMenuBar();
 		
-		JMenu menu1 = new JMenu("Archivo");
-		JMenu menu2 = new JMenu("Ayuda");
-		JMenu menu3 = new JMenu("Cuenta");
+		JMenu menu1 = new JMenu("Cuenta");
+		JMenu menu2 = new JMenu("Usuarios");
+		JMenu menu3 = new JMenu("Ayuda");
 		
-		JMenuItem op_abrir = new JMenuItem("Abrir");
-		JMenuItem op_nuevo = new JMenuItem("Nuevo");
-		JMenuItem op_guardar= new JMenuItem("Guardar");
-		JMenuItem op_cerrar = new JMenuItem("Cerrar");
+		JMenuItem op_alta = new JMenuItem("Alta");
+		JMenuItem op_baja = new JMenuItem("Baja");
+		JMenuItem op_consultar= new JMenuItem("Consultar");
 		
 		JMenuItem op_login= new JMenuItem("Inicio de sesión");
 		JMenuItem op_registro = new JMenuItem("Registro");
+		JMenuItem op_recuperar = new JMenuItem("Recuperación de cuenta");
 		
-		menu1.add(op_abrir);
-		menu1.add(op_nuevo);
-		menu1.add(op_guardar);
-		menu1.add(op_cerrar);
+		JMenuItem op_ayuda1 = new JMenuItem("¿Cómo crear un usuario?");
+		JMenuItem op_ayuda2 = new JMenuItem("¿Cómo acceder al sistema?");
+		JMenuItem op_ayuda3 = new JMenuItem("¿Qué pasa si olvidé mi contraseña?");
 		
-		JRadioButtonMenuItem op_ayuda = new JRadioButtonMenuItem("Manual de usuario");
-		JCheckBoxMenuItem op_soporte = new JCheckBoxMenuItem ("Soporte");
+		menu2.add(op_alta);
+		menu2.add(op_baja);
+		menu2.add(op_consultar);
 		
-		menu2.add(op_ayuda);
-		menu2.add(op_soporte);
+		/*JRadioButtonMenuItem op_ayuda = new JRadioButtonMenuItem("Manual de usuario");
+		JCheckBoxMenuItem op_soporte = new JCheckBoxMenuItem ("Soporte");*/
 		
-		menu3.add(op_login);
-		menu3.add(op_registro);
+		menu3.add(op_ayuda1);
+		menu3.add(op_ayuda2);
+		menu3.add(op_ayuda3);
 		
+		menu1.add(op_login);
+		menu1.add(op_registro);
+		menu1.add(op_recuperar);		
 		
 		barra.add(menu1);
 		barra.add(menu2);
@@ -114,6 +118,77 @@ public class Ventana extends JFrame{
 			}
 			
 		});
+		
+		op_consultar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("usuarios");
+			}
+			
+		});
+		
+		op_recuperar.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("recuperar");
+			}
+			
+		});
+		
+		op_alta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("alta");
+			}
+			
+		});
+		
+		op_baja.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("baja");
+			}
+			
+		});
+		
+		op_ayuda1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("ayuda1");
+			}
+			
+		});
+		
+		op_ayuda2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("ayuda2");
+			}
+			
+		});
+		
+		op_ayuda3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("ayuda3");
+			}
+			
+		});
+		
 		
 		this.add(this.login());
 		//this.add(this.registro());
@@ -413,9 +488,9 @@ public class Ventana extends JFrame{
 		return login;
 		
 	}
-
 	public void manager(String target) {
-
+		
+		
 		this.getContentPane().removeAll();
 		
 		if(target.equals("registro")) {
@@ -424,6 +499,28 @@ public class Ventana extends JFrame{
 		if(target.equals("login")) {
 			this.add(this.login());
 		}
+		if(target.equals("usuarios")) {
+			this.add(this.usuarios());
+		}
+		if(target.equals("recuperar")) {
+			this.add(this.recuperar());
+		}
+		if(target.equals("alta")) {
+			this.add(this.alta());
+		}
+		if(target.equals("baja")) {
+			this.add(this.baja());
+		}
+		if(target.equals("ayuda1")) {
+			this.add(this.ayuda1());
+		}
+		if(target.equals("ayuda2")) {
+			this.add(this.ayuda2());
+		}
+		if(target.equals("ayuda3")) {
+			this.add(this.ayuda3());
+		}
+		
 		
 		this.repaint();
 		this.revalidate();
@@ -606,13 +703,13 @@ public class Ventana extends JFrame{
 		usuarios.setLocation(0,0);
 		usuarios.setSize(1000,800);
 		usuarios.setOpaque(true);
-		usuarios.setBackground(Color.WHITE);
+		usuarios.setBackground(new Color(10, 73, 143));
 		usuarios.setVisible(true);
 		usuarios.setLayout(null);
 		
 		JLabel etiqueta1 = new JLabel("USUARIOS");
-		etiqueta1.setBounds(400, 40, 200, 30);
-		etiqueta1.setForeground(Color.black);
+		etiqueta1.setBounds(390, 80, 200, 30);
+		etiqueta1.setForeground(new Color(10, 73, 143));
 		etiqueta1.setBackground(Color.WHITE);
 		etiqueta1.setOpaque(true);
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
@@ -699,206 +796,240 @@ public class Ventana extends JFrame{
 		scrollPane.setLocation(30, 200);
 		usuarios.add(scrollPane);
 		
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(10, 40, 960, 500);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		usuarios.add(fondo1);
+					
+		
+		
 		usuarios.revalidate();
 		return usuarios;
 		
 	}
 	
-	/*@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public JPanel recuperar() {
+		JPanel recuperar = new JPanel();
+		recuperar.setLocation(0,0);
+		recuperar.setSize(700,600);
+		recuperar.setOpaque(true);
+		recuperar.setBackground(Color.WHITE);
+		recuperar.setVisible(true);
+		recuperar.setLayout(null);
 		
-		Graphics2D g2 = (Graphics2D) g;
+		JLabel etiqueta1 = new JLabel("Recuperación de cuenta");
+		etiqueta1.setBounds(190, 120, 300, 40);
+		etiqueta1.setForeground(new Color(10, 73, 143));
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
+		recuperar.add(etiqueta1);
 		
-		g2.setColor(Color.red);
-		
-		g2.drawRect(80, 80, 400, 400);
-		g2.fillRect(200, 200, 200, 200);
-		g2.clearRect(220, 220, 50, 50);
-		
-		g2.setColor(Color.blue);
-		g2.fillRoundRect(400, 80, 200, 200, 30, 30);
-		
-		g2.setColor(Color.GREEN);
-		g2.setStroke(new BasicStroke(10));
-		g2.drawLine(100, 100, 900, 500);
-		
-		g2.setStroke(new BasicStroke(5));
-		g2.setColor(new Color(229, 114, 126));
-		g2.drawOval(400, 400, 90, 90);
-		g2.fillOval(400, 450, 75, 100);
-		
-		g2.setColor(new Color(207, 147, 240));
-		g2.drawArc(600, 200, 200, 200, 0, -180);
-		g2.fillArc(600, 200, 200, 200, 0, 180);
-		
-		g2.setColor(new Color(51, 167, 241));
-		g2.setFont(etiquetas2);
-		g2.drawString("Hola crayola", 350, 200);
-		
-		
-		int [] xs = {100, 100, 400};
-		int [] ys = {100, 200, 400};
-		
-		g2.drawPolygon(xs, ys, 3);
-		
-		int [] xs2 = {600, 500, 100};
-		int [] ys2 = {600, 200, 150};
-		g2.fillPolygon(xs2, ys2, 3);
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(100, 80, 480, 400);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		recuperar.add(fondo1);
+				
+		//FONDO
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 700, 600);
+		fondo_img.setIcon(fondo);
+		recuperar.add(fondo_img);
 		
 		
+		recuperar.revalidate();
+		return recuperar;
+	}
+
+	public JPanel alta() {
+		JPanel alta = new JPanel();
+		alta.setLocation(0,0);
+		alta.setSize(700,600);
+		alta.setOpaque(true);
+		alta.setBackground(Color.WHITE);
+		alta.setVisible(true);
+		alta.setLayout(null);
+		
+		JLabel etiqueta1 = new JLabel("Alta de cuenta");
+		etiqueta1.setBounds(190, 120, 300, 40);
+		etiqueta1.setForeground(new Color(10, 73, 143));
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
+		alta.add(etiqueta1);
+		
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(100, 80, 480, 400);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		alta.add(fondo1);
+				
+		//FONDO
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 700, 600);
+		fondo_img.setIcon(fondo);
+		alta.add(fondo_img);
+		
+		
+		alta.revalidate();
+		return alta;
 	}
 	
-	@Override
-	public void paint(Graphics g) {
-		super.paint(g);
+	public JPanel baja() {
+		JPanel baja = new JPanel();
+		baja.setLocation(0,0);
+		baja.setSize(700,600);
+		baja.setOpaque(true);
+		baja.setBackground(Color.WHITE);
+		baja.setVisible(true);
+		baja.setLayout(null);
 		
-		Graphics2D g2 = (Graphics2D) g;
-		Color blanco = new Color(246, 243, 237);
+		JLabel etiqueta1 = new JLabel("Baja de cuenta");
+		etiqueta1.setBounds(190, 120, 300, 40);
+		etiqueta1.setForeground(new Color(10, 73, 143));
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
+		baja.add(etiqueta1);
 		
-		//FONDO
-			//CIELO
-		g2.setColor(new Color(120, 196, 199));
-		g2.fillRect(0, 0, 1000, 800);
-		g2.setColor(new Color(255, 202, 6));
-		g2.fillOval(850, 60, 70, 70);
-		
-			//PASTO
-		g2.setColor(new Color(35, 117, 30));
-		g2.fillRect(0, 450, 1000, 300);
-		
-			//CERCO
-		g2.setColor(new Color(232, 232, 232));
-		g2.fillRect(0, 425, 1000, 15);
-		g2.fillRect(0, 450, 1000, 15);
-		
-		g2.setColor(blanco);
-		int [] xsc = {0, 0, 20 , 40, 40 };
-		int [] ysc = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc, ysc, 5);
-		
-		int [] xsc2 = {50, 50, 70 , 90, 90 };
-		int [] ysc2 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc2, ysc2, 5);
-		
-		int [] xsc3 = {100, 100, 120 , 140, 140 };
-		int [] ysc3 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc3, ysc3, 5);
-		
-		int [] xsc4 = {150, 150, 170 , 190, 190 };
-		int [] ysc4 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc4, ysc4, 5);
-		
-		int [] xsc5 = {710, 710, 730 , 750, 750 };
-		int [] ysc5 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc5, ysc5, 5);
-		
-		int [] xsc6 = {760, 760, 780 , 800, 800 };
-		int [] ysc6 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc6, ysc6, 5);
-		
-		int [] xsc7 = {810, 810, 830 , 850, 850 };
-		int [] ysc7 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc7, ysc7, 5);
-		
-		int [] xsc8 = {860, 860, 880 , 900, 900 };
-		int [] ysc8 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc8, ysc8, 5);
-		
-		int [] xsc9 = {910, 910, 930 , 950, 950 };
-		int [] ysc9 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc9, ysc9, 5);
-		
-		int [] xsc10 = {960, 960, 980 , 1000, 1000 };
-		int [] ysc10 = {480,420 , 400 , 420, 480  };
-		g2.fillPolygon(xsc10, ysc10, 5);
-		
-		//BASE CASA
-		g2.setColor(new Color(243, 213, 136));
-		g2.fillRect(200, 200, 500, 300);
-		
-		
-		g2.setStroke(new BasicStroke(4));
-		g2.setColor(new Color(229, 199, 107));
-		g2.drawLine(202, 330, 699, 330);
-		g2.drawLine(202, 350, 699, 350);
-		g2.drawLine(202, 370, 699, 370);
-		g2.drawLine(202, 390, 699, 390);
-		g2.drawLine(202, 410, 699, 410);
-		g2.drawLine(202, 430, 699, 430);
-		g2.drawLine(202, 450, 699, 450);
-		g2.drawLine(202, 470, 699, 470);
-		g2.drawLine(202, 490, 699, 490);
-		
-		
-		//CHIMENEA
-		g2.setColor(new Color(21, 31, 39)); //azul3
-		g2.fillRect(230, 100, 60, 50);
-		g2.setColor(blanco);
-		g2.fillRect(225, 100, 70, 10);
-		
-		
-		
-		//TECHOS
-			//BACK
-		g2.setColor(new Color(29, 43, 54)); //azul2
-		int [] xs = {150, 200 , 700, 750 };
-		int [] ys = {300, 150 , 150, 300 };
-		g2.fillPolygon(xs, ys, 4);
-		
-		g2.setColor(blanco);
-		g2.setStroke(new BasicStroke(10));
-		g2.drawLine(155, 302, 745, 302);
-		
-			//FRONT
-		g2.setColor(new Color(38, 53, 64)); //azul1
-		int [] xs2 = {300, 450 , 600 };
-		int [] ys2 = {330, 220 , 330 };
-		g2.fillPolygon(xs2, ys2, 3);
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(100, 80, 480, 400);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		baja.add(fondo1);
 				
-		g2.setColor(blanco);
-		g2.setStroke(new BasicStroke(10));
-		g2.drawLine(306, 330, 594, 330);
+		//FONDO
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 700, 600);
+		fondo_img.setIcon(fondo);
+		baja.add(fondo_img);
 		
 		
-		//DETALLES
+		baja.revalidate();
+		return baja;
+	}
+
+	public JPanel ayuda1() {
+		JPanel ayuda1 = new JPanel();
+		ayuda1.setLocation(0,0);
+		ayuda1.setSize(700,600);
+		ayuda1.setOpaque(true);
+		ayuda1.setBackground(Color.WHITE);
+		ayuda1.setVisible(true);
+		ayuda1.setLayout(null);
 		
-			//PUERTA
-		g2.setColor(new Color( 47, 20, 29)); //cafe
-		g2.fillRect(405, 370, 90, 130);
-		g2.setColor(new Color( 39, 15, 24));
-		g2.setStroke(new BasicStroke(5));
-		g2.drawRect(425, 385, 50, 60);
-		g2.drawRect(425, 455, 50, 30);
-		g2.fillOval(480, 445, 10, 10);
+		JLabel etiqueta1 = new JLabel("¿Cómo crear un usuario?");
+		etiqueta1.setBounds(160, 120, 350, 40);
+		etiqueta1.setForeground(new Color(10, 73, 143));
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
+		ayuda1.add(etiqueta1);
+		
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(100, 80, 480, 400);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		ayuda1.add(fondo1);
+				
+		//FONDO
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 700, 600);
+		fondo_img.setIcon(fondo);
+		ayuda1.add(fondo_img);
 		
 		
-			//PILARES
-		g2.setColor(blanco);
+		ayuda1.revalidate();
+		return ayuda1;
+	}
+
+	public JPanel ayuda2() {
+		JPanel ayuda2 = new JPanel();
+		ayuda2.setLocation(0,0);
+		ayuda2.setSize(700,600);
+		ayuda2.setOpaque(true);
+		ayuda2.setBackground(Color.WHITE);
+		ayuda2.setVisible(true);
+		ayuda2.setLayout(null);
 		
-		g2.setStroke(new BasicStroke(25));
-		g2.drawLine(350 ,348 ,350 ,488);
+		JLabel etiqueta1 = new JLabel("¿Cómo acceder al sistema?");
+		etiqueta1.setBounds(160, 120, 350, 40);
+		etiqueta1.setForeground(new Color(10, 73, 143));
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
+		ayuda2.add(etiqueta1);
 		
-		g2.setStroke(new BasicStroke(25));
-		g2.drawLine(550 ,348 ,550 ,488);
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(100, 80, 480, 400);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		ayuda2.add(fondo1);
+				
+		//FONDO
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 700, 600);
+		fondo_img.setIcon(fondo);
+		ayuda2.add(fondo_img);
 		
-			//VENTANAS
-		g2.setColor(new Color(120, 196, 199)); //azulClaro
 		
-		g2.fillRect(580, 370, 100, 70);
-		g2.fillRect(220, 370, 100, 70);
-		
-		g2.setColor(blanco);
-		g2.setStroke(new BasicStroke(5));
-		g2.drawRect(580, 370, 100, 70);
-		g2.drawRect(220, 370, 100, 70);
-		
-		g2.drawLine(270, 370, 270, 440);
-		g2.drawLine(220, 405, 320, 405);
-		
-		g2.drawLine(630, 370, 630, 440);
-		g2.drawLine(580, 405, 680 , 405);
-		
-	}*/
+		ayuda2.revalidate();
+		return ayuda2;
+	}
 	
+	public JPanel ayuda3() {
+		JPanel ayuda3 = new JPanel();
+		ayuda3.setLocation(0,0);
+		ayuda3.setSize(700,600);
+		ayuda3.setOpaque(true);
+		ayuda3.setBackground(Color.WHITE);
+		ayuda3.setVisible(true);
+		ayuda3.setLayout(null);
+		
+		JLabel etiqueta1 = new JLabel("¿Qué pasa si olvidé mi contraseña?");
+		etiqueta1.setBounds(115, 120, 450, 40);
+		etiqueta1.setForeground(new Color(10, 73, 143));
+		etiqueta1.setBackground(Color.WHITE);
+		etiqueta1.setOpaque(true);
+		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
+		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
+		ayuda3.add(etiqueta1);
+		
+		//FONDO1
+		JLabel fondo1 = new JLabel();
+		fondo1.setBounds(100, 80, 480, 400);
+		fondo1.setBackground(Color.white);
+		fondo1.setOpaque(true);
+		ayuda3.add(fondo1);
+				
+		//FONDO
+		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
+		JLabel fondo_img = new JLabel();
+		fondo_img.setBounds(0, 0, 700, 600);
+		fondo_img.setIcon(fondo);
+		ayuda3.add(fondo_img);
+		
+		
+		ayuda3.revalidate();
+		return ayuda3;
+	}
+
 }
