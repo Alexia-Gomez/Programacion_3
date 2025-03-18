@@ -1331,7 +1331,13 @@ public class Ventana extends JFrame{
 				        if (source instanceof JButton) {  
 				            String texto_btn = boton.getText();
 				            Color colorRGB = boton.getBackground();
-				            JOptionPane.showMessageDialog(null, "Seleccionaste a: " + texto_btn + "\nColor (RGB):"+ colorRGB );  
+				            int res = JOptionPane.showConfirmDialog(null, "Seleccionaste a: " + texto_btn + "\nColor (RGB):"+ colorRGB + "\n¿Eliminar el botón?",
+				            		"Botón", JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE); 
+				            if(res==JOptionPane.YES_OPTION) {
+				            	botones.remove(boton);
+				            	botones.revalidate();
+				            	botones.repaint();
+				            }
 				        }
 					}
 					
