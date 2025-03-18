@@ -15,6 +15,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -190,7 +191,8 @@ public class Ventana extends JFrame{
 		});
 		
 		
-		this.add(this.login());
+		//this.add(this.login());
+		this.add(this.botones());
 		//this.add(this.registro());
 		
 		//this.add(this.usuarios());
@@ -1286,4 +1288,43 @@ public class Ventana extends JFrame{
 		return ayuda3;
 	}
 
+	public JPanel botones() {
+		JPanel botones = new JPanel();
+		botones.setLocation(0,0);
+		botones.setSize(700,600);
+		botones.setOpaque(true);
+		botones.setBackground(new Color(6, 189, 178 ));
+		botones.setVisible(true);
+		botones.setLayout(null);
+		
+		JButton boton1 = new JButton("Click me!");
+		boton1.setBounds(400, 450, 200, 50);
+		boton1.setBackground(Color.white);
+		boton1.setFont(etiquetas2);
+		boton1.setVisible(true);
+		botones.add(boton1);
+		
+		boton1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				JButton boton = new JButton("click");
+				
+				Random rand = new Random();
+				Color randColor = new Color(rand.nextInt(256), rand.nextInt(256), rand.nextInt(256));
+			
+				boton.setSize(rand.nextInt(200), rand.nextInt(100));
+				boton.setLocation(rand.nextInt(700), rand.nextInt(600));
+				boton.setBackground(randColor);
+				
+				botones.add(boton);
+				botones.repaint();
+			}
+			
+		});	
+		
+		botones.revalidate();
+		return botones;
+	}
 }
