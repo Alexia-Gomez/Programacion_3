@@ -796,6 +796,24 @@ public class Ventana extends JFrame{
 		scrollPane.setLocation(30, 200);
 		usuarios.add(scrollPane);
 		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(60, 450, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		usuarios.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
 		fondo1.setBounds(10, 40, 960, 500);
@@ -828,13 +846,58 @@ public class Ventana extends JFrame{
 		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
 		recuperar.add(etiqueta1);
 		
+		
+		//ingreso de correo 
+		JLabel etiqueta2 = new JLabel("Ingrese el correo vinculado a su cuenta de usuario:");
+		etiqueta2.setBounds(155, 230, 400, 25);
+		etiqueta2.setBackground(Color.WHITE);
+		etiqueta2.setForeground(new Color(4, 83, 125));
+		etiqueta2.setOpaque(true);
+		etiqueta2.setFont(etiquetas2);
+		recuperar.add(etiqueta2);
+				
+		JTextField user = new JTextField();	
+		user.setBounds(190, 270, 300, 30);
+		user.setBackground(new Color(237, 237, 237 ));
+		user.setOpaque(true);
+		user.setFont(etiquetas3);
+		recuperar.add(user);
+		
+				
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(140, 400, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		recuperar.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
+		JButton btn = new JButton("Enviar código");
+		btn.setBounds(350, 400, 180, 40);
+		btn.setBackground(new Color(10, 73, 143) );
+		btn.setForeground(Color.white);
+		btn.setOpaque(true);
+		btn.setFont(new Font("Nunito", Font.BOLD, 18));
+		recuperar.add(btn);
+		
+		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
 		fondo1.setBounds(100, 80, 480, 400);
 		fondo1.setBackground(Color.white);
 		fondo1.setOpaque(true);
 		recuperar.add(fondo1);
-				
+		
 		//FONDO
 		ImageIcon fondo = new ImageIcon("C:\\Users\\alexi\\OneDrive\\Imágenes\\fondo.png");
 		JLabel fondo_img = new JLabel();
@@ -864,6 +927,24 @@ public class Ventana extends JFrame{
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
 		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
 		alta.add(etiqueta1);
+		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(140, 400, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		alta.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
 		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
@@ -902,6 +983,24 @@ public class Ventana extends JFrame{
 		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
 		baja.add(etiqueta1);
 		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(140, 400, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		baja.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
 		fondo1.setBounds(100, 80, 480, 400);
@@ -938,6 +1037,74 @@ public class Ventana extends JFrame{
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
 		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
 		ayuda1.add(etiqueta1);
+		
+		JLabel etiqueta2 = new JLabel("Para registrarte, sigue estos sencillos pasos:");
+		etiqueta2.setBounds(155, 180, 400, 25);
+		etiqueta2.setBackground(Color.WHITE);
+		etiqueta2.setForeground(new Color(4, 83, 125));
+		etiqueta2.setOpaque(true);
+		etiqueta2.setFont(etiquetas2);
+		ayuda1.add(etiqueta2);
+		
+		JLabel paso1 = new JLabel("1.- Haz clic en el boton de crear cuenta.");
+		paso1.setBounds(155, 210, 400, 25);
+		paso1.setBackground(Color.WHITE);
+		paso1.setForeground(new Color(4, 83, 125));
+		paso1.setOpaque(true);
+		paso1.setFont(etiquetas2);
+		ayuda1.add(paso1);
+
+		JLabel paso2 = new JLabel("2.- Completa el formulario de registro.");
+		paso2.setBounds(155, 235, 400, 25);
+		paso2.setBackground(Color.WHITE);
+		paso2.setForeground(new Color(4, 83, 125));
+		paso2.setOpaque(true);
+		paso2.setFont(etiquetas2);
+		ayuda1.add(paso2);
+		
+		JLabel paso3 = new JLabel("3.- Ya registrado, podrás iniciar sesión.");
+		paso3.setBounds(155, 260, 400, 25);
+		paso3.setBackground(Color.WHITE);
+		paso3.setForeground(new Color(4, 83, 125));
+		paso3.setOpaque(true);
+		paso3.setFont(etiquetas2);
+		ayuda1.add(paso3);
+		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(140, 400, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		ayuda1.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
+		JButton btn = new JButton("Crear cuenta");
+		btn.setBounds(350, 400, 180, 40);
+		btn.setBackground(new Color(10, 73, 143) );
+		btn.setForeground(Color.white);
+		btn.setOpaque(true);
+		btn.setFont(new Font("Nunito", Font.BOLD, 18));
+		ayuda1.add(btn);
+		
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("registro");
+			}
+			
+		});	
 		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
@@ -976,6 +1143,25 @@ public class Ventana extends JFrame{
 		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
 		ayuda2.add(etiqueta1);
 		
+		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(140, 400, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		ayuda2.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
 		fondo1.setBounds(100, 80, 480, 400);
@@ -1012,6 +1198,74 @@ public class Ventana extends JFrame{
 		etiqueta1.setHorizontalAlignment(JLabel.CENTER);
 		etiqueta1.setFont(new Font("Nunito", Font.BOLD, 25));
 		ayuda3.add(etiqueta1);
+		
+		JLabel etiqueta2 = new JLabel("Para recuperar tu cuenta, sigue estos sencillos pasos:");
+		etiqueta2.setBounds(140, 180, 420, 25);
+		etiqueta2.setBackground(Color.WHITE);
+		etiqueta2.setForeground(new Color(4, 83, 125));
+		etiqueta2.setOpaque(true);
+		etiqueta2.setFont(etiquetas2);
+		ayuda3.add(etiqueta2);
+		
+		JLabel paso1 = new JLabel("1.- Haz clic en el boton de recuperar cuenta.");
+		paso1.setBounds(155, 210, 400, 25);
+		paso1.setBackground(Color.WHITE);
+		paso1.setForeground(new Color(4, 83, 125));
+		paso1.setOpaque(true);
+		paso1.setFont(etiquetas2);
+		ayuda3.add(paso1);
+		
+		JLabel paso2 = new JLabel("2.- Llena los datos que se pidan.");
+		paso2.setBounds(155, 235, 400, 25);
+		paso2.setBackground(Color.WHITE);
+		paso2.setForeground(new Color(4, 83, 125));
+		paso2.setOpaque(true);
+		paso2.setFont(etiquetas2);
+		ayuda3.add(paso2);
+		
+		JLabel paso3 = new JLabel("3.- Ingresa el codigo de recuperación.");
+		paso3.setBounds(155, 260, 400, 25);
+		paso3.setBackground(Color.WHITE);
+		paso3.setForeground(new Color(4, 83, 125));
+		paso3.setOpaque(true);
+		paso3.setFont(etiquetas2);
+		ayuda3.add(paso3);
+		
+		JButton btn_login = new JButton("Volver al inicio");
+		btn_login.setBounds(140, 400, 180, 40);   //CAMBIAR POSICION
+		btn_login.setBackground(Color.white );
+		btn_login.setForeground(new Color(10, 73, 143));
+		btn_login.setOpaque(true);
+		btn_login.setFont(new Font("Nunito", Font.BOLD, 18));
+		ayuda3.add(btn_login);
+		
+		btn_login.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("login");
+			}
+			
+		});	
+		
+		JButton btn = new JButton("Recuperar cuenta");
+		btn.setBounds(350, 400, 190, 40);
+		btn.setBackground(new Color(10, 73, 143) );
+		btn.setForeground(Color.white);
+		btn.setOpaque(true);
+		btn.setFont(new Font("Nunito", Font.BOLD, 18));
+		ayuda3.add(btn);
+		
+		btn.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				manager("recuperar");
+			}
+			
+		});	
 		
 		//FONDO1
 		JLabel fondo1 = new JLabel();
