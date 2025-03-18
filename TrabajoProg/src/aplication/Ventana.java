@@ -30,6 +30,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
@@ -1318,8 +1319,23 @@ public class Ventana extends JFrame{
 				boton.setLocation(rand.nextInt(700), rand.nextInt(600));
 				boton.setBackground(randColor);
 				
+				boton.setText(boton.getText()+rand.nextInt(100));
+				
 				botones.add(boton);
 				botones.repaint();
+				
+				boton.addActionListener(new ActionListener() {
+					
+					public void actionPerformed(ActionEvent f) {
+						Object source = e.getSource();  
+				        if (source instanceof JButton) {  
+				            String texto_btn = boton.getText();
+				            Color colorRGB = boton.getBackground();
+				            JOptionPane.showMessageDialog(null, "Seleccionaste a: " + texto_btn + "\nColor (RGB):"+ colorRGB );  
+				        }
+					}
+					
+				});
 			}
 			
 		});	
