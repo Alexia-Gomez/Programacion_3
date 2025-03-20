@@ -7,12 +7,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import javax.swing.SwingConstants;
 
 public class TicTacToe {
 
@@ -54,6 +59,11 @@ public class TicTacToe {
 	JButton btnNewButton_6;
 	JButton btnNewButton_7;
 	JButton btnNewButton_8;
+	private JPanel panel_1;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_1;
+	private JPanel panel_2;
+	private JButton btnNewButton_9;
 	
 	
 	
@@ -63,12 +73,21 @@ public class TicTacToe {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 503, 501);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
+		panel.setBackground(new Color(254, 251, 186));
+		frame.getContentPane().add(panel);
 		panel.setLayout(new GridLayout(3, 3, 0, 0));
 		
+		//usuario_icon.setIcon(new ImageIcon(usuario.getImage().getScaledInstance(30, 30, Image.SCALE_SMOOTH)));
+		
+		ImageIcon roll=new ImageIcon(TicTacToe.class.getResource("/aplication/cinnamonroll.png"));
+		ImageIcon melody=new ImageIcon(TicTacToe.class.getResource("/aplication/melody2.png"));
+		
+		
 		btnNewButton = new JButton("");
+		btnNewButton.setBackground(new Color(249, 231, 247));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton.addActionListener(new ActionListener() {
 
@@ -79,9 +98,12 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
+					
 				}
 				btnNewButton.setText(jugador);
 				btnNewButton.setEnabled(false);
@@ -93,6 +115,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_2 = new JButton("");
+		btnNewButton_2.setBackground(new Color(249, 231, 247));
 		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_2.addActionListener(new ActionListener() {
 
@@ -103,9 +126,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_2.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_2.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_2.setText(jugador);
 				btnNewButton_2.setEnabled(false);
@@ -116,6 +141,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_4 = new JButton("");
+		btnNewButton_4.setBackground(new Color(249, 231, 247));
 		btnNewButton_4.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_4.addActionListener(new ActionListener() {
 
@@ -126,9 +152,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_4.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_4.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_4.setText(jugador);
 				btnNewButton_4.setEnabled(false);
@@ -141,6 +169,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_6 = new JButton("");
+		btnNewButton_6.setBackground(new Color(249, 231, 247));
 		btnNewButton_6.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_6.addActionListener(new ActionListener() {
 
@@ -151,9 +180,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_6.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_6.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_6.setText(jugador);
 				btnNewButton_6.setEnabled(false);
@@ -164,6 +195,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_1 = new JButton("");
+		btnNewButton_1.setBackground(new Color(249, 231, 247));
 		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 30));
 		
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -175,9 +207,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_1.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_1.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_1.setText(jugador);
 				btnNewButton_1.setEnabled(false);
@@ -189,6 +223,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_3 = new JButton("");
+		btnNewButton_3.setBackground(new Color(249, 231, 247));
 		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_3.addActionListener(new ActionListener() {
 
@@ -199,9 +234,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_3.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_3.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_3.setText(jugador);
 				btnNewButton_3.setEnabled(false);
@@ -214,6 +251,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_5 = new JButton("");
+		btnNewButton_5.setBackground(new Color(249, 231, 247));
 		btnNewButton_5.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_5.addActionListener(new ActionListener() {
 
@@ -224,9 +262,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_5.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_5.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_5.setText(jugador);
 				btnNewButton_5.setEnabled(false);
@@ -238,6 +278,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_7 = new JButton("");
+		btnNewButton_7.setBackground(new Color(249, 231, 247));
 		btnNewButton_7.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_7.addActionListener(new ActionListener() {
 
@@ -248,9 +289,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_7.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_7.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_7.setText(jugador);
 				btnNewButton_7.setEnabled(false);
@@ -262,6 +305,7 @@ public class TicTacToe {
 		
 		
 		btnNewButton_8 = new JButton("");
+		btnNewButton_8.setBackground(new Color(249, 231, 247));
 		btnNewButton_8.setFont(new Font("Tahoma", Font.BOLD, 30));
 		btnNewButton_8.addActionListener(new ActionListener() {
 
@@ -272,9 +316,11 @@ public class TicTacToe {
 				if(turno) {
 					turno=false;
 					jugador="X";
+					btnNewButton_8.setIcon(new ImageIcon(roll.getImage().getScaledInstance(195,180, Image.SCALE_SMOOTH)));
 				}else {
 					turno=true;
 					jugador="O";
+					btnNewButton_8.setIcon(new ImageIcon(melody.getImage().getScaledInstance(180,150, Image.SCALE_SMOOTH)));
 				}
 				btnNewButton_8.setText(jugador);
 				btnNewButton_8.setEnabled(false);
@@ -282,6 +328,32 @@ public class TicTacToe {
 			}
 		});
 		panel.add(btnNewButton_8);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(new Color(176, 218, 236));
+		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		lblNewLabel = new JLabel("X:   ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_1.add(lblNewLabel);
+		
+		lblNewLabel_1 = new JLabel("O:   ");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		panel_1.add(lblNewLabel_1);
+		
+		panel_2 = new JPanel();
+		panel_2.setBackground(new Color(248, 189, 195));
+		frame.getContentPane().add(panel_2, BorderLayout.SOUTH);
+		
+		btnNewButton_9 = new JButton("Reiniciar");
+		btnNewButton_9.setBackground(new Color(247, 214, 225));
+		btnNewButton_9.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton_9.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		panel_2.add(btnNewButton_9);
 	
 		
 	}
@@ -302,24 +374,24 @@ public class TicTacToe {
 		
 		//
 		if((btnNewButton.getText().equals(btnNewButton_6.getText()))&&(btnNewButton_6.getText().equals(btnNewButton_5.getText()))&&!(btnNewButton_5.getText().equals(""))) {
-			JOptionPane.showConfirmDialog(null,"Ganador: "+btnNewButton.getText()+"\n¿Volver a jugar?"); 
+			JOptionPane.showConfirmDialog(null,"Ganador: "+btnNewButton.getText()); 
 		}
 		
 		if((btnNewButton_2.getText().equals(btnNewButton_1.getText()))&&(btnNewButton_1.getText().equals(btnNewButton_7.getText()))&&!(btnNewButton_7.getText().equals(""))) {
-			JOptionPane.showConfirmDialog(null,"Ganador: "+btnNewButton_2.getText()+"\n¿Volver a jugar?"); 
+			JOptionPane.showConfirmDialog(null,"Ganador: "+btnNewButton_2.getText()); 
 		}
 		
 		if((btnNewButton_4.getText().equals(btnNewButton_3.getText()))&&(btnNewButton_3.getText().equals(btnNewButton_8.getText()))&&!(btnNewButton_8.getText().equals(""))) {
-			JOptionPane.showConfirmDialog(null,"Ganador: "+btnNewButton_4.getText()+"\n¿Volver a jugar?"); 
+			JOptionPane.showConfirmDialog(null,"Ganador: "+btnNewButton_4.getText()); 
 		}
 		
 		//
 		if((btnNewButton.getText().equals(btnNewButton_1.getText()))&&(btnNewButton_1.getText().equals(btnNewButton_8.getText()))&&!(btnNewButton_8.getText().equals(""))) {
-			JOptionPane.showConfirmDialog(null, "Ganador: "+btnNewButton.getText()+"\n¿Volver a jugar?"); 
+			JOptionPane.showConfirmDialog(null, "Ganador: "+btnNewButton.getText()); 
 		}
 		
 		if((btnNewButton_4.getText().equals(btnNewButton_1.getText()))&&(btnNewButton_1.getText().equals(btnNewButton_5.getText()))&&!(btnNewButton_5.getText().equals(""))) {
-			JOptionPane.showConfirmDialog(null, "Ganador: "+btnNewButton_4.getText()+"\n¿Volver a jugar?"); 
+			JOptionPane.showConfirmDialog(null, "Ganador: "+btnNewButton_4.getText()); 
 		}
 	}
 	
