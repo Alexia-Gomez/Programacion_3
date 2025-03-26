@@ -1,30 +1,34 @@
 package aplication;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.UIManager;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.border.MatteBorder;
 import java.awt.Font;
+import java.awt.Graphics;
+
 import javax.swing.SwingConstants;
-import java.awt.FlowLayout;
+import javax.swing.Timer;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.border.TitledBorder;
+import javax.swing.border.LineBorder;
 
 public class RompecabezasNumerico {
 
 	private JFrame frame;
 	ArrayList<Integer>numeros= new ArrayList<Integer>();
+	
 	JButton btn1;
 	JButton btn2;
 	JButton btn3;
@@ -41,6 +45,51 @@ public class RompecabezasNumerico {
 	JButton btn14;
 	JButton btn15;
 	JButton btn16;
+	
+	JPanel opciones;
+	JLabel lblNewLabel_1;
+	
+	JLabel labelTiempo = new JLabel();
+	JButton iniciar;
+	JButton pausar;
+	
+	int elapsedTime=0;
+	int miliS=0;
+	int sec=0;
+	int min=0;
+	int hr=0;
+	
+	String milis_text=String.format("%03d",miliS);
+	String sec_text=String.format("%02d",sec);
+	String min_text=String.format("%02d",min);
+	String hr_text=String.format("%02d",hr);
+	
+	Timer timer=new Timer(10, new ActionListener() {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			elapsedTime+=10;
+			hr=(elapsedTime/3600000);
+			min=(elapsedTime/60000)%60;
+			sec=(elapsedTime/1000)%60;
+			miliS=elapsedTime%1000;
+			
+			milis_text=String.format("%03d",miliS);
+			sec_text=String.format("%02d",sec);
+			min_text=String.format("%02d",min);
+			hr_text=String.format("%02d",hr);
+			
+			labelTiempo.setText(hr_text+":"+min_text+":"+sec_text+"."+milis_text);
+			
+		}
+		
+	});
+	private JButton reinicio_1;
+	
+	public void paint(Graphics g) {
+		
+	}
 
 	/**
 	 * Launch the application.
@@ -89,20 +138,22 @@ public class RompecabezasNumerico {
 		Collections.shuffle(numeros);
 		
 		frame = new JFrame();
-		frame.setBounds(100, 100, 700, 600);
+		frame.setBounds(100, 100, 711, 533);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JPanel tablero = new JPanel();
+		tablero.setForeground(new Color(0, 0, 0));
+		tablero.setBounds(20, 153, 376, 289);
+		tablero.setBackground(new Color(232, 162, 2));
+		tablero.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(232, 162, 2)));
+		frame.getContentPane().add(tablero);
 		
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(187, 143, 206));
-		panel.setBorder(new MatteBorder(20, 30, 20, 30, (Color) new Color(187, 143, 206)));
-		frame.getContentPane().add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(4, 4, 10, 10));
-		
-		btn1 = new JButton(numeros.get(1)+""); //
+		btn1 = new JButton(numeros.get(1)+"");
 		btn1.setForeground(new Color(0, 0, 0));
-		btn1.setBackground(new Color(235, 222, 240));
-		btn1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn1.setBackground(new Color(255, 255, 255));
+		btn1.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn1.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -115,17 +166,20 @@ public class RompecabezasNumerico {
 					btn5.setText(btn1.getText());
 					btn1.setText("0");
 				}
-				panel.repaint();
-				panel.revalidate();
+				
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn1);
+		tablero.setLayout(new GridLayout(0, 4, 0, 0));
+		tablero.add(btn1);
 		
 		btn2 = new JButton(numeros.get(2)+"");
-		btn2.setBackground(new Color(235, 222, 240));
+		btn2.setBackground(new Color(255, 255, 255));
 		btn2.setForeground(new Color(0, 0, 0));
-		btn2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn2.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn2.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -143,17 +197,18 @@ public class RompecabezasNumerico {
 					btn2.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn2);
+		tablero.add(btn2);
 		
 		btn3 = new JButton(numeros.get(3)+"");
-		btn3.setBackground(new Color(235, 222, 240));
+		btn3.setBackground(new Color(255, 255, 255));
 		btn3.setForeground(new Color(0, 0, 0));
-		btn3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn3.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn3.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -171,17 +226,18 @@ public class RompecabezasNumerico {
 					btn3.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn3);
+		tablero.add(btn3);
 		
 		btn4 = new JButton(numeros.get(4)+"");
-		btn4.setBackground(new Color(235, 222, 240));
+		btn4.setBackground(new Color(255, 255, 255));
 		btn4.setForeground(new Color(0, 0, 0));
-		btn4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn4.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn4.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -195,17 +251,18 @@ public class RompecabezasNumerico {
 					btn4.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn4);
+		tablero.add(btn4);
 		
 		btn5 = new JButton(numeros.get(5)+"");
 		btn5.setForeground(new Color(0, 0, 0));
-		btn5.setBackground(new Color(235, 222, 240));
-		btn5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn5.setBackground(new Color(255, 255, 255));
+		btn5.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn5.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -223,17 +280,18 @@ public class RompecabezasNumerico {
 					btn5.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn5);
+		tablero.add(btn5);
 		
-		btn6 = new JButton(numeros.get(6)+"");//
-		btn6.setBackground(new Color(235, 222, 240));
+		btn6 = new JButton(numeros.get(6)+"");
+		btn6.setBackground(new Color(255, 255, 255));
 		btn6.setForeground(new Color(0, 0, 0));
-		btn6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn6.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn6.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -255,17 +313,18 @@ public class RompecabezasNumerico {
 					btn6.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn6);
+		tablero.add(btn6);
 		
-		btn7 = new JButton(numeros.get(7)+"");//
-		btn7.setBackground(new Color(235, 222, 240));
+		btn7 = new JButton(numeros.get(7)+"");
+		btn7.setBackground(new Color(255, 255, 255));
 		btn7.setForeground(new Color(0, 0, 0));
-		btn7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn7.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn7.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -287,17 +346,18 @@ public class RompecabezasNumerico {
 					btn7.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn7);
+		tablero.add(btn7);
 		
 		btn8 = new JButton(numeros.get(8)+"");
-		btn8.setBackground(new Color(235, 222, 240));
+		btn8.setBackground(new Color(255, 255, 255));
 		btn8.setForeground(new Color(0, 0, 0));
-		btn8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn8.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn8.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -315,17 +375,18 @@ public class RompecabezasNumerico {
 					btn8.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn8);
+		tablero.add(btn8);
 		
 		btn9 = new JButton(numeros.get(9)+"");
-		btn9.setBackground(new Color(235, 222, 240));
+		btn9.setBackground(new Color(255, 255, 255));
 		btn9.setForeground(new Color(0, 0, 0));
-		btn9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn9.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn9.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -343,17 +404,18 @@ public class RompecabezasNumerico {
 					btn9.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn9);
+		tablero.add(btn9);
 		
 		btn10 = new JButton(numeros.get(10)+"");
-		btn10.setBackground(new Color(235, 222, 240));
+		btn10.setBackground(new Color(255, 255, 255));
 		btn10.setForeground(new Color(0, 0, 0));
-		btn10.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn10.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn10.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -375,17 +437,18 @@ public class RompecabezasNumerico {
 					btn10.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn10);
+		tablero.add(btn10);
 		
 		btn11 = new JButton(numeros.get(11)+"");
-		btn11.setBackground(new Color(235, 222, 240));
+		btn11.setBackground(new Color(255, 255, 255));
 		btn11.setForeground(new Color(0, 0, 0));
-		btn11.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn11.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn11.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -407,17 +470,18 @@ public class RompecabezasNumerico {
 					btn11.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn11);
+		tablero.add(btn11);
 		
 		btn12 = new JButton(numeros.get(12)+"");
-		btn12.setBackground(new Color(235, 222, 240));
+		btn12.setBackground(new Color(255, 255, 255));
 		btn12.setForeground(new Color(0, 0, 0));
-		btn12.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn12.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn12.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -435,17 +499,18 @@ public class RompecabezasNumerico {
 					btn12.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn12);
+		tablero.add(btn12);
 		
 		btn13 = new JButton(numeros.get(13)+"");
-		btn13.setBackground(new Color(235, 222, 240));
+		btn13.setBackground(new Color(255, 255, 255));
 		btn13.setForeground(new Color(0, 0, 0));
-		btn13.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn13.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn13.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -459,17 +524,18 @@ public class RompecabezasNumerico {
 					btn13.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn13);
+		tablero.add(btn13);
 		
 		btn14 = new JButton(numeros.get(14)+"");
-		btn14.setBackground(new Color(235, 222, 240));
+		btn14.setBackground(new Color(255, 255, 255));
 		btn14.setForeground(new Color(0, 0, 0));
-		btn14.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn14.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn14.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -487,17 +553,18 @@ public class RompecabezasNumerico {
 					btn14.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn14);
+		tablero.add(btn14);
 		
 		btn15 = new JButton(numeros.get(15)+"");
-		btn15.setBackground(new Color(235, 222, 240));
+		btn15.setBackground(new Color(255, 255, 255));
 		btn15.setForeground(new Color(0, 0, 0));
-		btn15.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn15.setFont(new Font("Bahnschrift", Font.BOLD, 20));
 		btn15.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -515,16 +582,17 @@ public class RompecabezasNumerico {
 					btn15.setText("0");
 				}
 
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn15);
+		tablero.add(btn15);
 		
 		btn16 = new JButton(numeros.get(0)+"");
-		btn16.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btn16.setBackground(new Color(235, 222, 240));
+		btn16.setFont(new Font("Bahnschrift", Font.BOLD, 20));
+		btn16.setBackground(new Color(255, 255, 255));
 		btn16.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -538,28 +606,277 @@ public class RompecabezasNumerico {
 					btn16.setText("0");
 				}
 				
-				panel.repaint();
-				panel.revalidate();
+				tablero.repaint();
+				tablero.revalidate();
+				juegoGanado();
 			}
 			
 		});
-		panel.add(btn16);
+		tablero.add(btn16);
 		
 		
 		// opciones 
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(142, 68, 173));
-		frame.getContentPane().add(panel_1, BorderLayout.NORTH);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel titulo = new JPanel();
+		//titulo.setBackground(new Color(255, 255, 255));
+		titulo.setOpaque(false);
+		titulo.setBounds(10, 0, 400, 142);
+		frame.getContentPane().add(titulo);
+		titulo.setLayout(null);
 		
-		JButton btnReinicio = new JButton("Reiniciar");
-		btnReinicio.setBackground(new Color(240, 240, 240));
-		btnReinicio.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		panel_1.add(btnReinicio);
+		lblNewLabel_1 = new JLabel("15 PUZZLE");
+		lblNewLabel_1.setForeground(new Color(255, 255, 255));
+		lblNewLabel_1.setBounds(10, 0, 400, 60);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Cooper Black", Font.PLAIN, 60));
+		titulo.add(lblNewLabel_1);
 		
+		JButton reinicio = new JButton("Reiniciar");
+		reinicio.setForeground(new Color(255, 255, 255));
+		reinicio.setBackground(new Color(209, 42, 88));
+		reinicio.setVerticalAlignment(SwingConstants.BOTTOM);
+		reinicio.setFont(new Font("Bahnschrift", Font.BOLD, 17));
+		reinicio.setBounds(241, 99, 130, 32);
+		reinicio.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				reiniciar();
+			}
+			
+		});
+		titulo.add(reinicio);
+		
+		JButton nuevo= new JButton("Nuevo tablero");
+		nuevo.setForeground(new Color(255, 255, 255));
+		nuevo.setBackground(new Color(90, 173, 1));
+		nuevo.setVerticalAlignment(SwingConstants.BOTTOM);
+		nuevo.setFont(new Font("Bahnschrift", Font.BOLD, 17));
+		nuevo.setBounds(42, 99, 155, 32);
+		nuevo.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				revolver();
+			}
+			
+		});
+		titulo.add(nuevo);
+		
+		
+		opciones = new JPanel();
+		opciones.setBorder(null);
+		opciones.setBounds(432, 11, 229, 413);
+		opciones.setOpaque(false);
+		frame.getContentPane().add(opciones);
+		opciones.setLayout(null);
+
+		iniciar = new JButton("Iniciar");
+		iniciar.setForeground(new Color(255, 255, 255));
+		iniciar.setBackground(new Color(209, 42, 88));
+		iniciar.setFont(new Font("Bahnschrift", Font.BOLD, 17));
+		iniciar.setBounds(48, 252, 130, 32);
+		iniciar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+					timer.start();
+					iniciar.setText("Reanundar");
+					iniciar.setEnabled(false);
+					pausar.setEnabled(true);
+					activarBtn();
+			}
+			
+		});
+		opciones.add(iniciar);	
+		
+		
+		pausar = new JButton("Pausar");
+		pausar.setFont(new Font("Bahnschrift", Font.BOLD, 17));
+		pausar.setForeground(new Color(255, 255, 255));
+		pausar.setBackground(new Color(0, 109, 184));
+		pausar.setEnabled(false);
+		pausar.setBounds(48, 295, 130, 32);
+		pausar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+					timer.stop();
+					pausar.setEnabled(false);
+					iniciar.setEnabled(true);
+					desactivarBtn();
+					
+			}
+			
+		});
+		opciones.add(pausar);
+		
+		/*JButton prueba = new JButton("prueba");
+		prueba.setBounds(140, 0, 89, 23);
+		prueba.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				pruebaGanar();
+			}
+			
+		});
+		opciones.add(prueba);*/
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(new LineBorder(new Color(90, 173, 1), 3), "Tiempo: ", TitledBorder.CENTER, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		panel.setBounds(0, 151, 229, 77);
+		panel.setOpaque(false);
+		opciones.add(panel);
+		panel.add(labelTiempo);
+		labelTiempo.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		labelTiempo.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		
+		labelTiempo.setText(hr_text+":"+min_text+":"+sec_text+"."+milis_text);
+		
+		ImageIcon fondo_img=new ImageIcon(RompecabezasNumerico.class.getResource("/aplication/fondo_puzzle.png"));
+		JLabel Fondo = new JLabel("");
+		Fondo.setHorizontalAlignment(SwingConstants.CENTER);
+		Fondo.setIcon(new ImageIcon(fondo_img.getImage().getScaledInstance(711, 533, Image.SCALE_SMOOTH)));
+		Fondo.setBounds(0, 0, 695, 494);
+		frame.getContentPane().add(Fondo);
 		
 		
 		
 	}
+	
+	public void stop() {
+		timer.stop();
+	}
+	
+	public void juegoGanado() {
+		for (int i = 0; i < 15; i++) {
+	        if (numeros.get(i) != i + 1) {
+	            return;
+	        }
+	    }
+		
+	    if (numeros.get(15)==0) {
+	    	stop();
+	        JOptionPane.showMessageDialog(frame, "¡Felicidades! Completaste el juego\nTiempo jugando: "+labelTiempo.getText(), "Juego Completado", JOptionPane.INFORMATION_MESSAGE);
+	        reiniciar();
+	    }
+	}
+	
+	public void desactivarBtn() {
+		btn1.setEnabled(false);
+		btn2.setEnabled(false);
+		btn3.setEnabled(false);
+		btn4.setEnabled(false);
+		btn5.setEnabled(false);
+		btn6.setEnabled(false);
+		btn7.setEnabled(false);
+		btn8.setEnabled(false);
+		btn9.setEnabled(false);
+		btn10.setEnabled(false);
+		btn11.setEnabled(false);
+		btn12.setEnabled(false);
+		btn13.setEnabled(false);
+		btn14.setEnabled(false);
+		btn15.setEnabled(false);
+		btn16.setEnabled(false);
+		
+	}
+	
+	public void activarBtn() {
+		btn1.setEnabled(true);
+		btn2.setEnabled(true);
+		btn3.setEnabled(true);
+		btn4.setEnabled(true);
+		btn5.setEnabled(true);
+		btn6.setEnabled(true);
+		btn7.setEnabled(true);
+		btn8.setEnabled(true);
+		btn9.setEnabled(true);
+		btn10.setEnabled(true);
+		btn11.setEnabled(true);
+		btn12.setEnabled(true);
+		btn13.setEnabled(true);
+		btn14.setEnabled(true);
+		btn15.setEnabled(true);
+		btn16.setEnabled(true);
+		
+	}
+	
+	public void revolver() {
+		btn1.setText(numeros.get(1)+ "");
+		btn2.setText(numeros.get(2)+ "");
+		btn3.setText(numeros.get(3)+ "");
+		btn4.setText(numeros.get(4)+ "");
+		btn5.setText(numeros.get(5)+ "");
+		btn6.setText(numeros.get(6)+ "");
+		btn7.setText(numeros.get(7)+ "");
+		btn8.setText(numeros.get(8)+ "");
+		btn9.setText(numeros.get(9)+ "");
+		btn10.setText(numeros.get(10)+ "");
+		btn11.setText(numeros.get(11)+ "");
+		btn12.setText(numeros.get(12)+ "");
+		btn13.setText(numeros.get(13)+ "");
+		btn14.setText(numeros.get(14)+ "");
+		btn15.setText(numeros.get(15)+ "");
+		btn16.setText(numeros.get(0)+ "");
+		
+		Collections.shuffle(numeros);
+		frame.repaint();
+	}
+	
+	public void reiniciar() {
+		revolver();
+		
+		stop();
+		elapsedTime=0;
+		miliS=0;
+		sec=0;
+		min=0;
+		hr=0;
+		
+		milis_text=String.format("%03d",miliS);
+		sec_text=String.format("%02d",sec);
+		min_text=String.format("%02d",min);
+		hr_text=String.format("%02d",hr);
+		
+		labelTiempo.setText(hr_text+":"+min_text+":"+sec_text+"."+milis_text);
+		
+		iniciar.setText("Iniciar");
+		iniciar.setEnabled(true);
+        pausar.setEnabled(false);
+		
+		frame.repaint();
+	}
+	
+	/*private void pruebaGanar() {
+	    numeros.clear();
+	    
+	    // Llenamos la lista con los números en orden
+	    for (int i = 1; i <= 15; i++) {
+	        numeros.add(i);
+	    }
+	    numeros.add(0); // El último espacio es el vacío
 
+	    // Asignamos los valores ordenados a los botones
+	    btn1.setText(numeros.get(0) + "");
+	    btn2.setText(numeros.get(1) + "");
+	    btn3.setText(numeros.get(2) + "");
+	    btn4.setText(numeros.get(3) + "");
+	    btn5.setText(numeros.get(4) + "");
+	    btn6.setText(numeros.get(5) + "");
+	    btn7.setText(numeros.get(6) + "");
+	    btn8.setText(numeros.get(7) + "");
+	    btn9.setText(numeros.get(8) + "");
+	    btn10.setText(numeros.get(9) + "");
+	    btn11.setText(numeros.get(10) + "");
+	    btn12.setText(numeros.get(11) + "");
+	    btn13.setText(numeros.get(12) + "");
+	    btn14.setText(numeros.get(13) + "");
+	    btn15.setText(numeros.get(14) + "");
+	    btn16.setText(""); // Espacio vacío
+
+	    frame.repaint(); // Redibuja la interfaz
+	}*/
 }
