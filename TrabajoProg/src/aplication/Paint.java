@@ -5,21 +5,39 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
+import java.awt.Point;
 
-public class Paint {
+public class Paint implements MouseListener, MouseMotionListener {
 
 	private JFrame frame;
-
+	private PaintPanel pizarra;
+	private Color colorTrazo=Color.black;
+	private float grosortrazo=3.0f;
+	
+	private ArrayList<Point> puntos = new ArrayList<Point>();
+	List<List<Point>> listaPuntos = new ArrayList<>();
+	List<Color> listaColores = new ArrayList<>();
+	List<Float> listaGrosor = new ArrayList<>();
 	/**
 	 * Launch the application.
 	 */
@@ -84,10 +102,6 @@ public class Paint {
 		
 		JButton btnNewButton_1 = new JButton("   Guardar");
 		btnNewButton_1.setIcon(new ImageIcon(Paint.class.getResource("/aplication/save (2).png")));
-		btnNewButton_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnNewButton_1.setBackground(new Color(255, 255, 255));
 		btnNewButton_1.setBounds(20, 347, 120, 30);
 		lateral.add(btnNewButton_1);
@@ -95,20 +109,43 @@ public class Paint {
 		JButton btnNewButton_1_1 = new JButton("Grueso");
 		btnNewButton_1_1.setBackground(Color.WHITE);
 		btnNewButton_1_1.setBounds(20, 276, 120, 30);
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				grosortrazo++;
+			}
+			
+		});
 		lateral.add(btnNewButton_1_1);
 		
 		JButton btnRegular = new JButton("Regular");
 		btnRegular.setBackground(Color.WHITE);
 		btnRegular.setBounds(20, 235, 120, 30);
+		btnRegular.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				grosortrazo=3.0f;
+			}
+			
+		});
 		lateral.add(btnRegular);
 		
 		JButton btnFino = new JButton("Fino");
-		btnFino.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnFino.setBackground(Color.WHITE);
 		btnFino.setBounds(20, 194, 120, 30);
+		btnFino.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				grosortrazo--;
+			}
+			
+		});
 		lateral.add(btnFino);
 		
 		JLabel lblTamao = new JLabel("Tamaño");
@@ -148,29 +185,83 @@ public class Paint {
 		panel_1.setBackground(new Color(217, 245, 255));
 		panel_1.setLayout(new GridLayout(0, 3, 5, 5));
 		
-		JButton btnNewButton_2 = new JButton("");
-		btnNewButton_2.setBackground(new Color(255, 255, 255));
-		panel_1.add(btnNewButton_2);
+		JButton btn_blanco = new JButton("");
+		btn_blanco.setBackground(new Color(255, 255, 255));
+		btn_blanco.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				colorTrazo=Color.white;
+			}
+			
+		});
+		panel_1.add(btn_blanco);
 		
-		JButton btnNewButton_4 = new JButton("");
-		btnNewButton_4.setBackground(new Color(0, 0, 255));
-		panel_1.add(btnNewButton_4);
+		JButton btn_azul = new JButton("");
+		btn_azul.setBackground(new Color(0, 0, 255));
+		btn_azul.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				colorTrazo=Color.blue;
+			}
+			
+		});
+		panel_1.add(btn_azul);
 		
-		JButton btnNewButton_5 = new JButton("");
-		btnNewButton_5.setBackground(new Color(0, 0, 0));
-		panel_1.add(btnNewButton_5);
+		JButton btn_negro = new JButton("");
+		btn_negro.setBackground(new Color(0, 0, 0));
+		btn_negro.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				colorTrazo=Color.black;
+			}
+			
+		});
+		panel_1.add(btn_negro);
 		
-		JButton btnNewButton_6 = new JButton("");
-		btnNewButton_6.setBackground(new Color(128, 128, 128));
-		panel_1.add(btnNewButton_6);
+		JButton btn_gris = new JButton("");
+		btn_gris.setBackground(new Color(128, 128, 128));
+		btn_gris.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				colorTrazo=Color.gray;
+			}
+			
+		});
+		panel_1.add(btn_gris);
 		
-		JButton btnNewButton_3 = new JButton("");
-		btnNewButton_3.setBackground(new Color(255, 0, 0));
-		panel_1.add(btnNewButton_3);
+		JButton btn_rojo = new JButton("");
+		btn_rojo.setBackground(new Color(255, 0, 0));
+		btn_rojo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				colorTrazo=Color.red;
+			}
+			
+		});
+		panel_1.add(btn_rojo);
 		
-		JButton btnNewButton_7 = new JButton("");
-		btnNewButton_7.setBackground(new Color(0, 128, 64));
-		panel_1.add(btnNewButton_7);
+		JButton btn_verde = new JButton("");
+		btn_verde.setBackground(new Color(0, 128, 64));
+		btn_verde.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				colorTrazo=Color.green;
+			}
+			
+		});
+		panel_1.add(btn_verde);
 		
 		JButton btnNewButton_8 = new JButton("");
 		btnNewButton_8.setBounds(434, 11, 60, 60);
@@ -213,9 +304,108 @@ public class Paint {
 		btnNewButton_9_1_1.setBounds(180, 25, 30, 30);
 		barra.add(btnNewButton_9_1_1);
 		
-		JPanel pizarra = new JPanel();
-		pizarra.setBackground(new Color(255, 255, 255));
+		pizarra = new PaintPanel();
 		pizarra.setBounds(214, 134, 624, 413);
+		pizarra.addMouseListener(this);
+		pizarra.addMouseMotionListener(this);
 		panel.add(pizarra);
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		ArrayList ArrList2=(ArrayList)puntos.clone();
+		listaPuntos.add(ArrList2);
+		listaColores.add(colorTrazo);
+		listaGrosor.add(grosortrazo);
+		puntos.clear();
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		// TODO Auto-generated method stub
+		puntos.add(e.getPoint());
+		pizarra.repaint();
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+	
+	class PaintPanel extends JPanel{
+		
+		public PaintPanel() {
+			
+			this.setBackground(Color.white);
+			
+		}
+		
+		public void paintComponent(Graphics g) {
+			super.paintComponent(g);
+			
+			Graphics2D g2 = (Graphics2D) g;
+			
+			g2.setColor(colorTrazo);
+			g2.setStroke(new BasicStroke(grosortrazo));
+			
+			if(puntos.size()>1) {
+				for(int i=1; i<puntos.size();i++) {
+					Point p1=puntos.get(i-1);
+					Point p2=puntos.get(i);
+					
+					g2.drawLine(p1.x, p1.y, p2.x, p2.y);
+				}
+			}
+			
+			int j=0;
+			for(Iterator iterator=listaPuntos.iterator(); iterator.hasNext();) {
+				List<Point>trazo=(List<Point>)iterator.next();
+				
+				if(j<listaColores.size()) {
+					g2.setColor(listaColores.get(j));
+				}
+				if(j<listaGrosor.size()) {
+					g2.setStroke(new BasicStroke(listaGrosor.get(j)));
+				}
+				
+				if(trazo.size()>1) {
+					for(int i=1;i<trazo.size();i++) {
+						Point p1=trazo.get(i-1);
+						Point p2=trazo.get(i);
+						
+						g2.drawLine(p1.x, p1.y, p2.x, p2.y);
+					}
+				}
+				j++;
+			}
+			
+		}
 	}
 }
