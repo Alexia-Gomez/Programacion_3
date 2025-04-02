@@ -33,11 +33,16 @@ public class Paint implements MouseListener, MouseMotionListener {
 	private PaintPanel pizarra;
 	private Color colorTrazo=Color.black;
 	private float grosortrazo=3.0f;
+	private int tool=1;
+	
+	private ArrayList<Figura> figuras = new ArrayList<Figura>();
 	
 	private ArrayList<Point> puntos = new ArrayList<Point>();
 	List<List<Point>> listaPuntos = new ArrayList<>();
 	List<Color> listaColores = new ArrayList<>();
 	List<Float> listaGrosor = new ArrayList<>();
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -91,6 +96,15 @@ public class Paint implements MouseListener, MouseMotionListener {
 		btnNewButton.setHorizontalAlignment(SwingConstants.LEADING);
 		btnNewButton.setIcon(new ImageIcon(Paint.class.getResource("/aplication/brush2.png")));
 		btnNewButton.setBounds(20, 52, 120, 30);
+		btnNewButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool=1;
+			}
+			
+		});
 		lateral.add(btnNewButton);
 		
 		JButton btnBorrador = new JButton("  Borrador");
@@ -98,6 +112,15 @@ public class Paint implements MouseListener, MouseMotionListener {
 		btnBorrador.setHorizontalAlignment(SwingConstants.LEADING);
 		btnBorrador.setIcon(new ImageIcon(Paint.class.getResource("/aplication/eraser.png")));
 		btnBorrador.setBounds(20, 93, 120, 30);
+		btnBorrador.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool=7;
+			}
+			
+		});
 		lateral.add(btnBorrador);
 		
 		JButton btnNewButton_1 = new JButton("   Guardar");
@@ -158,7 +181,20 @@ public class Paint implements MouseListener, MouseMotionListener {
 		btnNewButton_1_2.setIcon(new ImageIcon(Paint.class.getResource("/aplication/delete (1).png")));
 		btnNewButton_1_2.setHorizontalAlignment(SwingConstants.LEADING);
 		btnNewButton_1_2.setBackground(Color.WHITE);
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				puntos.clear();
+				figuras.clear();
+				listaPuntos.clear();
+				pizarra.repaint();
+			}
+			
+		});
 		btnNewButton_1_2.setBounds(20, 392, 120, 30);
+		
 		lateral.add(btnNewButton_1_2);
 		
 		JButton btnNewButton_9_4 = new JButton("");
@@ -280,29 +316,47 @@ public class Paint implements MouseListener, MouseMotionListener {
 		lblFiguras.setBounds(10, 25, 81, 30);
 		barra.add(lblFiguras);
 		
-		JButton btnNewButton_9 = new JButton("");
-		btnNewButton_9.setIcon(new ImageIcon(Paint.class.getResource("/aplication/square.png")));
-		btnNewButton_9.setBackground(new Color(255, 255, 255));
-		btnNewButton_9.setBounds(90, 25, 30, 30);
-		barra.add(btnNewButton_9);
+		JButton btnCuadrado = new JButton("");
+		btnCuadrado.setIcon(new ImageIcon(Paint.class.getResource("/aplication/square.png")));
+		btnCuadrado.setBackground(new Color(255, 255, 255));
+		btnCuadrado.setBounds(90, 25, 30, 30);
+		btnCuadrado.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool=2;
+			}
+			
+		});
+		barra.add(btnCuadrado);
 		
-		JButton btnNewButton_9_1 = new JButton("");
-		btnNewButton_9_1.setIcon(new ImageIcon(Paint.class.getResource("/aplication/circle1.png")));
-		btnNewButton_9_1.setBackground(Color.WHITE);
-		btnNewButton_9_1.setBounds(120, 25, 30, 30);
-		barra.add(btnNewButton_9_1);
+		JButton btnCirculo = new JButton("");
+		btnCirculo.setIcon(new ImageIcon(Paint.class.getResource("/aplication/circle1.png")));
+		btnCirculo.setBackground(Color.WHITE);
+		btnCirculo.setBounds(120, 25, 30, 30);
+		btnCirculo.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				tool=3;
+			}
+			
+		});
+		barra.add(btnCirculo);
 		
-		JButton btnNewButton_9_2 = new JButton("");
-		btnNewButton_9_2.setIcon(new ImageIcon(Paint.class.getResource("/aplication/triangle.png")));
-		btnNewButton_9_2.setBackground(Color.WHITE);
-		btnNewButton_9_2.setBounds(150, 25, 30, 30);
-		barra.add(btnNewButton_9_2);
+		JButton btnTriangulo = new JButton("");
+		btnTriangulo.setIcon(new ImageIcon(Paint.class.getResource("/aplication/triangle.png")));
+		btnTriangulo.setBackground(Color.WHITE);
+		btnTriangulo.setBounds(150, 25, 30, 30);
+		barra.add(btnTriangulo);
 		
-		JButton btnNewButton_9_1_1 = new JButton("");
-		btnNewButton_9_1_1.setIcon(new ImageIcon(Paint.class.getResource("/aplication/line2 (1).png")));
-		btnNewButton_9_1_1.setBackground(Color.WHITE);
-		btnNewButton_9_1_1.setBounds(180, 25, 30, 30);
-		barra.add(btnNewButton_9_1_1);
+		JButton btnLinea = new JButton("");
+		btnLinea.setIcon(new ImageIcon(Paint.class.getResource("/aplication/line2 (1).png")));
+		btnLinea.setBackground(Color.WHITE);
+		btnLinea.setBounds(180, 25, 30, 30);
+		barra.add(btnLinea);
 		
 		pizarra = new PaintPanel();
 		pizarra.setBounds(214, 134, 624, 413);
@@ -314,6 +368,14 @@ public class Paint implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(tool == 2) {
+			pizarra.repaint();
+			figuras.add(new Figura(e.getX(),e.getY(),80,80, colorTrazo));
+		}
+		if(tool == 3) {
+			pizarra.repaint();
+			figuras.add(new Figura(e.getX(),e.getY(),80,80, colorTrazo));
+		}
 		
 	}
 
@@ -326,11 +388,14 @@ public class Paint implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(tool==1) {
 		ArrayList ArrList2=(ArrayList)puntos.clone();
 		listaPuntos.add(ArrList2);
 		listaColores.add(colorTrazo);
 		listaGrosor.add(grosortrazo);
 		puntos.clear();
+		}
+		
 	}
 
 	@Override
@@ -348,8 +413,14 @@ public class Paint implements MouseListener, MouseMotionListener {
 	@Override
 	public void mouseDragged(MouseEvent e) {
 		// TODO Auto-generated method stub
+		if(tool==1) {
 		puntos.add(e.getPoint());
-		pizarra.repaint();
+		}
+		if(tool==7) {
+			figuras.add(new Figura(e.getX(),e.getY(),80,80, Color.white));
+		}
+		
+		pizarra.repaint();	
 	}
 
 	@Override
@@ -375,6 +446,7 @@ public class Paint implements MouseListener, MouseMotionListener {
 			g2.setColor(colorTrazo);
 			g2.setStroke(new BasicStroke(grosortrazo));
 			
+			
 			if(puntos.size()>1) {
 				for(int i=1; i<puntos.size();i++) {
 					Point p1=puntos.get(i-1);
@@ -382,8 +454,10 @@ public class Paint implements MouseListener, MouseMotionListener {
 					
 					g2.drawLine(p1.x, p1.y, p2.x, p2.y);
 				}
-			}
+			}   
 			
+	
+				
 			int j=0;
 			for(Iterator iterator=listaPuntos.iterator(); iterator.hasNext();) {
 				List<Point>trazo=(List<Point>)iterator.next();
@@ -403,9 +477,40 @@ public class Paint implements MouseListener, MouseMotionListener {
 						g2.drawLine(p1.x, p1.y, p2.x, p2.y);
 					}
 				}
+				
+				if(figuras.size()>1) {
+					for(int i=1; i<figuras.size();i++) {
+						Figura f = figuras.get(i);
+						
+						g2.setColor(f.c);
+						if(tool==2) {
+							g2.drawRect(f.x, f.y, f.w, f.h);
+						}
+						if(tool==3) {
+							g2.drawOval(f.x, f.y, f.w, f.h);
+						}
+						if(tool==7) {
+							g2.fillRect(f.x, f.y, f.w, f.h);
+						}
+					}
+				}
+				
 				j++;
 			}
 			
+		}
+	}
+	
+	class Figura{
+		
+		public int x, y, w, h;
+		public Color c;
+		public Figura(int x, int y, int w, int h, Color c) {
+			this.x=x;
+			this.y=y;
+			this.w=w;
+			this.h=h;
+			this.c=c;
 		}
 	}
 }
