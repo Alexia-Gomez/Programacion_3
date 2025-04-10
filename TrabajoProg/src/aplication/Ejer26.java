@@ -9,6 +9,7 @@ import java.awt.Rectangle;
 import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
@@ -17,12 +18,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class Ejer26 implements KeyListener{
 
 	private JFrame frame;
 	public PaintPanel panel_1;
 	private Player player;
+	Timer timer, timer2;
+	int seg=0, mili=0;
+	boolean timerStart=false;
+	private int lastPress=0;
 	private ArrayList<Player> obstaculos = new ArrayList<Player>();
 
 	/**
@@ -59,15 +65,31 @@ public class Ejer26 implements KeyListener{
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		JPanel panel = new JPanel();
-		panel.setBackground(new Color(100, 100, 179));
+		panel.setBackground(new Color(29, 32, 69));
 		frame.getContentPane().add(panel, BorderLayout.SOUTH);
 		
+		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(29, 32, 69));
+		frame.getContentPane().add(panel_2, BorderLayout.NORTH);
+		
+		JLabel lblNewLabel = new JLabel("0:0");
+		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
+		lblNewLabel.setForeground(new Color(255, 255, 255));
+		lblNewLabel.setBackground(new Color(128, 128, 192));
+		panel_2.add(lblNewLabel);
+		
 		JButton btnNewButton = new JButton("Reiniciar");
+		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				player.x=250;
 				player.y=200;
-				
+				lastPress=0;
+				seg=0;
+				mili=0;
+				lblNewLabel.setText("0:0");
+				timer.stop();
+				timerStart=false;
 				panel_1.repaint();
 				panel_1.setFocusable(true);
 				panel_1.requestFocus();
@@ -77,25 +99,43 @@ public class Ejer26 implements KeyListener{
 		panel.add(btnNewButton);
 		
 		panel_1 = new PaintPanel();
-		panel_1.setBackground(new Color(29, 32, 69));
+		panel_1.setBackground(new Color(100, 100, 179));
 		panel_1.setOpaque(true);
 		frame.getContentPane().add(panel_1, BorderLayout.CENTER);
 		panel_1.addKeyListener(this);
 		panel_1.setFocusable(true);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(100, 100, 179));
-		frame.getContentPane().add(panel_2, BorderLayout.NORTH);
-		
-		JLabel lblNewLabel = new JLabel("00:00:00.000");
-		lblNewLabel.setForeground(new Color(255, 255, 255));
-		lblNewLabel.setBackground(new Color(128, 128, 192));
-		panel_2.add(lblNewLabel);
 		
 		player=new Player(250, 200,30 ,30 , Color.white);
-		obstaculos.add(new Player(150, 50,350 ,30 , Color.black ));
-		obstaculos.add(new Player(200, 300,200 ,30 , Color.black));
+		obstaculos.add(new Player(150, 50,350 ,30 , Color.gray ));
+		obstaculos.add(new Player(200, 300,200 ,30 , Color.gray));
 		
+		timer = new Timer(100, new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mili+=100;
+				if(mili>=1000) {
+					seg++;
+					mili=0;
+				}
+				lblNewLabel.setText(seg+":"+(mili/10));
+			}
+			
+		});
+		
+		
+		ActionListener movimiento = new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				update();
+			}
+			
+		};
+		timer2=new Timer(5, movimiento);
+				
 	}
 	
 	class PaintPanel extends JPanel{
@@ -112,7 +152,7 @@ public class Ejer26 implements KeyListener{
 			g2.fillRect(player.x,player.y,player.w, player.h);
 			
 			for(Player pared:obstaculos) {
-				g2.setColor(Color.black);
+				g2.setColor(new Color(29, 32, 69));
 				g2.fillRect(pared.x,pared.y,pared.w, pared.h);
 			}
 		}
@@ -127,21 +167,35 @@ public class Ejer26 implements KeyListener{
 	@Override
 	public void keyPressed(KeyEvent e) {
 		// TODO Auto-generated method stub
+		if(!timerStart) {
+			timer.start();
+			timerStart=true;
+		}
+		
+		timer2.start();
+		
+		lastPress=e.getKeyCode();
+		
+		update();
+        
+	}
+	
+	public void update(){
 		Player copia = new Player(player.x, player.y, player.w, player.h, player.c);
 		
-		if(e.getKeyCode()==87) {
+		if(lastPress==87) {
 			copia.y-=5;
 			
 		}
-		if(e.getKeyCode()==83) {
+		if(lastPress==83) {
 			copia.y+=5;
 			
 		}
-		if(e.getKeyCode()==65) {
+		if(lastPress==65) {
 			copia.x-=5;
 			
 		}
-		if(e.getKeyCode()==68) {
+		if(lastPress==68) {
 			copia.x+=5;
 			
 		}
@@ -180,7 +234,6 @@ public class Ejer26 implements KeyListener{
         
         
         panel_1.repaint();
-        
 	}
 
 	@Override
