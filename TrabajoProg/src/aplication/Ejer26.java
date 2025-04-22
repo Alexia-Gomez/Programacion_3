@@ -12,6 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -19,17 +21,62 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Toolkit;
 
 public class Ejer26 implements KeyListener{
 
 	private JFrame frame;
 	public PaintPanel panel_1;
 	private Player player;
+	Rectangle meta;
+	private JLabel lblNewLabel;
 	Timer timer, timer2;
 	int seg=0, mili=0;
 	boolean timerStart=false;
 	private int lastPress=0;
 	private ArrayList<Player> obstaculos = new ArrayList<Player>();
+	int [][] laberinto = {
+			{1,0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+		    {1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1},
+		    {1,0,1,0,1,1,1,0,1,1,1,1,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1},
+		    {1,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,1,0,1,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0,1,0,1},
+		    {1,0,1,0,1,0,1,1,1,0,1,1,1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,1,1},
+		    {1,0,1,0,1,0,0,0,1,0,1,0,1,0,0,1,0,1,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,0,0,0,1},
+		    {1,0,1,0,1,1,1,0,1,0,1,0,1,1,0,1,0,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,0,0,1},
+		    {1,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,1,0,0,0,0,1,0,0,0,0,0,1,1,1,0,0,0,1,1,1,0,1},
+		    {1,0,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,1,0,0,0,1,1,1,1,0,1,1,1,0,0,1,1,1,1,0,0,0,1,0,1},
+		    {1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,0,1,1,1,1,1,0,0,0,0,1,0,1,1,0,0,1,1,1,0,1,1,1,0,1},
+		    {1,1,1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,0,0,0,0,0,0,1,0,0,1,0,1,0,0,0,0,1,1,0,1,0,0,0,1},
+		    {1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,1,0,1,0,1,0,1},
+		    {1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1,1,1,1,0,1,0,1,0,1},
+		    {1,0,0,0,1,0,1,0,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,0,1,0,1},
+		    {1,0,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1},
+		    {1,0,1,1,1,1,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,0,0,0,0,0,1,0,1,0,1},
+		    {1,0,0,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,1,1,1,1,1,0,1,0,1},
+		    {1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,0,0,0,1,0,1},
+		    {1,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0,0,1,0,0,0,0,1,0,1,0,1,1,0,0,1,1,1,0,1},
+		    {1,0,1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,0,0,0,0,1,0,1,1,1,1,0,1,1,1,0,0,0,1,0,0,0,1},
+		    {1,0,1,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,1,0,0,1,0,1,0,0,0,0,1,0,0,0,0,0,0,0,1,0,1,1,1},
+		    {1,0,1,1,1,0,1,1,1,0,1,0,1,0,1,0,1,0,1,0,1,1,0,1,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,0,1},
+		    {1,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,1,0,1,0,1,0,0,1,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1},
+		    {1,1,1,1,1,1,1,0,1,1,1,1,1,0,1,1,1,0,1,0,1,0,1,1,0,1,0,1,1,1,1,1,1,1,1,0,1,1,1,0,1},
+		    {1,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,1,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,0,1},
+		    {1,0,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,1,0,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1},
+		    {1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,1,0,1,0,1,0,1,0,1,0,0,0,1,0,0,0,0,1},
+		    {1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,1,1,1,1,1,1,0,1,1,0,0,0,1,0,1,0,1,0,0,0,1,0,0,0,0,1},
+		    {1,0,1,0,1,0,1,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,1,1,0,1,0,1,0,1,0,0,0,1,1,1,1},
+		    {1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,0,1,1,1,1,1,1,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1,0,1},
+		    {1,0,1,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,0,1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,1,0,1},
+		    {1,0,1,0,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,1,0,1,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1},
+		    {1,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,1,1,1,1,1,1,0,0,1,1,0,1,1,0,1},
+		    {1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,1,0,0,0,0,0,1,1,0,1,1,1,1,1,0,1},
+		    {1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,1,0,0,0,0,0,1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,1},
+		    {1,1,1,1,1,0,1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,1,0,1},
+		    {1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0,1,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1,1,0,1},
+		    {1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,1,1,0,1,0,1,1,1,1,0,1,1,1,0,1,0,1,0,0,1,0,1},
+		    {1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,0,0},
+		    {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
+			};
 
 	/**
 	 * Launch the application.
@@ -60,7 +107,8 @@ public class Ejer26 implements KeyListener{
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 650, 500);
+		frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Ejer26.class.getResource("/aplication/sky.jpg")));
+		frame.setBounds(100, 100, 545, 630);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new BorderLayout(0, 0));
 		
@@ -72,7 +120,7 @@ public class Ejer26 implements KeyListener{
 		panel_2.setBackground(new Color(29, 32, 69));
 		frame.getContentPane().add(panel_2, BorderLayout.NORTH);
 		
-		JLabel lblNewLabel = new JLabel("0:0");
+		lblNewLabel = new JLabel("0:0");
 		lblNewLabel.setFont(new Font("Verdana", Font.PLAIN, 20));
 		lblNewLabel.setForeground(new Color(255, 255, 255));
 		lblNewLabel.setBackground(new Color(128, 128, 192));
@@ -82,17 +130,8 @@ public class Ejer26 implements KeyListener{
 		btnNewButton.setFont(new Font("Verdana", Font.PLAIN, 15));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				player.x=250;
-				player.y=200;
-				lastPress=0;
-				seg=0;
-				mili=0;
 				lblNewLabel.setText("0:0");
-				timer.stop();
-				timerStart=false;
-				panel_1.repaint();
-				panel_1.setFocusable(true);
-				panel_1.requestFocus();
+				reinicio();
 			}
 		});
 		btnNewButton.setBackground(new Color(255, 255, 255));
@@ -105,9 +144,22 @@ public class Ejer26 implements KeyListener{
 		panel_1.addKeyListener(this);
 		panel_1.setFocusable(true);
 		
-		player=new Player(250, 200,30 ,30 , Color.white);
-		obstaculos.add(new Player(150, 50,350 ,30 , Color.gray ));
-		obstaculos.add(new Player(200, 300,200 ,30 , Color.gray));
+		player=new Player(15, 0,9 ,9 , Color.white);
+		meta = new Rectangle(520, 495,10,10);
+		//obstaculos.add(new Player(150, 50,10 ,10 , Color.gray ));
+		/*obstaculos.add(new Player(150, 50,350 ,30 , Color.gray ));
+		obstaculos.add(new Player(200, 300,200 ,30 , Color.gray));*/
+		int tamanoCelda = 13;
+
+		for (int fila = 0; fila < laberinto.length; fila++) {
+		    for (int col = 0; col < laberinto[0].length; col++) {
+		        if (laberinto[fila][col] == 1) {
+		            int x = col * tamanoCelda;
+		            int y = fila * tamanoCelda;
+		            obstaculos.add(new Player(x, y, tamanoCelda, tamanoCelda, Color.black));
+		        }
+		    }
+		}
 		
 		timer = new Timer(100, new ActionListener() {
 
@@ -155,6 +207,9 @@ public class Ejer26 implements KeyListener{
 				g2.setColor(new Color(29, 32, 69));
 				g2.fillRect(pared.x,pared.y,pared.w, pared.h);
 			}
+			
+			g2.setColor(Color.white);
+			g2.fillRect(meta.x,meta.y,meta.width, meta.height);
 		}
 	}
 
@@ -233,6 +288,15 @@ public class Ejer26 implements KeyListener{
         }
         
         
+        if(player.getBounds().intersects(meta)) {
+        	timer.stop();
+        	timer2.stop();
+        	JOptionPane.showMessageDialog(frame,"¡FELICIDADES, completaste el juego en: "
+        									+seg+":"+(mili/10));
+        	reinicio();
+            timer2.start();
+        }
+        
         panel_1.repaint();
 	}
 
@@ -242,7 +306,19 @@ public class Ejer26 implements KeyListener{
 		
 	}
 	
-
+	public void reinicio() {
+		player.x=15;
+		player.y=0;
+		lastPress=0;
+		seg=0;
+		mili=0;
+		lblNewLabel.setText("0:0");
+		timer.stop();
+		timerStart=false;
+		panel_1.setFocusable(true);
+		panel_1.requestFocus();
+		panel_1.repaint();
+	}
 	
 	class Player {
 		
